@@ -5,32 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 1 - Foundation
+**Current focus:** Phase 2 - Server Engine Core
 
 ## Current Position
 
-Phase: 1 of 11 (Foundation) -- COMPLETE
-Plan: 2 of 2 in current phase (all plans complete)
-Status: Phase Complete
-Last activity: 2026-02-16 - Completed 01-02-PLAN.md (Foundation Stores)
+Phase: 2 of 11 (Server Engine Core)
+Plan: 1 of 3 in current phase
+Status: In Progress
+Last activity: 2026-02-16 - Completed 02-01-PLAN.md (HTTP Services)
 
-Progress: [██░░░░░░░░] 9%
+Progress: [██░░░░░░░░] 14%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 3
 - Average duration: 2 min
-- Total execution time: 0.07 hours
+- Total execution time: 0.12 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 4 min | 2 min |
+| 02-server-engine-core | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min), 01-02 (2 min)
+- Last 5 plans: 01-01 (2 min), 01-02 (2 min), 02-01 (3 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -51,6 +52,10 @@ Recent decisions affecting current work:
 - Plan 01-02: EndpointStore centralizes both endpoint CRUD and RequestLog insertion/pruning
 - Plan 01-02: ServerStore uses didSet write-through for immediate UserDefaults persistence
 - Plan 01-02: ProManager singleton injected via .environment() for global consistency with view testability
+- Plan 02-01: HTTP request validation uses method uppercase check + path prefix '/' guard for malformed input rejection
+- Plan 02-01: EndpointMatcher uses sorted() on allowed methods for deterministic 405 responses
+- Plan 02-01: HTTPResponseBuilder sorts headers alphabetically for deterministic test assertions
+- Plan 02-01: EndpointMatcher.EndpointData uses tuple typealias to decouple from SwiftData MockEndpoint model
 
 ### Pending Todos
 
@@ -63,5 +68,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 01-02-PLAN.md (Foundation Stores) -- Phase 1 complete
-Resume file: .planning/phases/01-foundation/01-02-SUMMARY.md
+Stopped at: Completed 02-01-PLAN.md (HTTP Services)
+Resume file: .planning/phases/02-server-engine-core/02-01-SUMMARY.md
