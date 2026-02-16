@@ -235,6 +235,8 @@ actor MockServerEngine {
                 requestBody: parsed.body,
                 responseStatusCode: 204,
                 responseBody: nil,
+                responseHeaders: [:],
+                matchedEndpointPath: nil,
                 responseTimeMs: responseTimeMs
             )
             onRequestLogged?(logData)
@@ -263,13 +265,17 @@ actor MockServerEngine {
         let responseData: Data
         let responseStatusCode: Int
         let responseBody: String?
+        let logResponseHeaders: [String: String]
+        let matchedEndpointPath: String?
 
         switch matchResult {
-        case .matched(_, _, let statusCode, let body, let headers):
+        case .matched(let path, _, let statusCode, let body, let headers):
             responseStatusCode = statusCode
             responseBody = body
+            matchedEndpointPath = path
             var responseHeaders = headers
             responseHeaders["Content-Type"] = responseHeaders["Content-Type"] ?? "application/json"
+            logResponseHeaders = responseHeaders
             responseData = HTTPResponseBuilder.build(
                 statusCode: statusCode,
                 headers: responseHeaders,
@@ -281,6 +287,8 @@ actor MockServerEngine {
             responseStatusCode = 404
             let errorBody = "{\"error\":\"Not Found\",\"path\":\"\(parsed.path)\"}"
             responseBody = errorBody
+            matchedEndpointPath = nil
+            logResponseHeaders = ["Content-Type": "application/json"]
             responseData = HTTPResponseBuilder.build(
                 statusCode: 404,
                 headers: ["Content-Type": "application/json"],
@@ -293,7 +301,9 @@ actor MockServerEngine {
             let methodsJson = allowedMethods.map { "\"\($0)\"" }.joined(separator: ",")
             let errorBody = "{\"error\":\"Method Not Allowed\",\"allowed\":[\(methodsJson)]}"
             responseBody = errorBody
+            matchedEndpointPath = nil
             let allowHeader = allowedMethods.joined(separator: ", ")
+            logResponseHeaders = ["Content-Type": "application/json", "Allow": allowHeader]
             responseData = HTTPResponseBuilder.build(
                 statusCode: 405,
                 headers: [
@@ -316,6 +326,8 @@ actor MockServerEngine {
             requestBody: parsed.body,
             responseStatusCode: responseStatusCode,
             responseBody: responseBody,
+            responseHeaders: logResponseHeaders,
+            matchedEndpointPath: matchedEndpointPath,
             responseTimeMs: responseTimeMs
         )
         onRequestLogged?(logData)

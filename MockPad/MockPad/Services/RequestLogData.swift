@@ -20,5 +20,7 @@ struct RequestLogData: Sendable {
     let requestBody: String?
     let responseStatusCode: Int
     let responseBody: String?
+    let responseHeaders: [String: String]
+    let matchedEndpointPath: String?
     let responseTimeMs: Double
 }

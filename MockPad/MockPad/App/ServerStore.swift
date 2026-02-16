@@ -62,6 +62,8 @@ final class ServerStore {
                         requestBody: logData.requestBody,
                         responseStatusCode: logData.responseStatusCode,
                         responseBody: logData.responseBody,
+                        responseHeaders: logData.responseHeaders,
+                        matchedEndpointPath: logData.matchedEndpointPath,
                         responseTimeMs: logData.responseTimeMs
                     )
                     endpointStore.addLogEntry(log)

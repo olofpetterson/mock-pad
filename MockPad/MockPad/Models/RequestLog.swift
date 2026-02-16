@@ -18,6 +18,8 @@ final class RequestLog {
     var requestBody: String?
     var responseStatusCode: Int
     var responseBody: String?
+    var responseHeadersData: Data?
+    var matchedEndpointPath: String?
     var responseTimeMs: Double
 
     var queryParameters: [String: String] {
@@ -37,6 +39,16 @@ final class RequestLog {
         }
         set {
             requestHeadersData = try? JSONEncoder().encode(newValue)
+        }
+    }
+
+    var responseHeaders: [String: String] {
+        get {
+            guard let data = responseHeadersData else { return [:] }
+            return (try? JSONDecoder().decode([String: String].self, from: data)) ?? [:]
+        }
+        set {
+            responseHeadersData = try? JSONEncoder().encode(newValue)
         }
     }
 
@@ -60,6 +72,8 @@ final class RequestLog {
         requestBody: String? = nil,
         responseStatusCode: Int,
         responseBody: String? = nil,
+        responseHeaders: [String: String] = [:],
+        matchedEndpointPath: String? = nil,
         responseTimeMs: Double
     ) {
         self.timestamp = timestamp
@@ -70,6 +84,8 @@ final class RequestLog {
         self.requestBody = Self.truncateBody(requestBody)
         self.responseStatusCode = responseStatusCode
         self.responseBody = Self.truncateBody(responseBody)
+        self.responseHeadersData = try? JSONEncoder().encode(responseHeaders)
+        self.matchedEndpointPath = matchedEndpointPath
         self.responseTimeMs = responseTimeMs
     }
 }

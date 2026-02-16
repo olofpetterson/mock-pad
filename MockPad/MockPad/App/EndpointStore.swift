@@ -56,6 +56,15 @@ final class EndpointStore {
         try? modelContext.save()
     }
 
+    func clearLog() {
+        let descriptor = FetchDescriptor<RequestLog>()
+        guard let allLogs = try? modelContext.fetch(descriptor) else { return }
+        for log in allLogs {
+            modelContext.delete(log)
+        }
+        try? modelContext.save()
+    }
+
     func addLogEntry(_ log: RequestLog) {
         modelContext.insert(log)
         try? modelContext.save()
