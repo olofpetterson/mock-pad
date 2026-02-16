@@ -9,7 +9,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [ ] **Phase 1: Foundation** - SwiftData models, stores, project structure
 - [x] **Phase 2: Server Engine Core** - NWListener, HTTP parsing, basic routing
 - [x] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
-- [ ] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
+- [x] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
 - [ ] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
 - [ ] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
 - [ ] **Phase 7: Import/Export + Collections** - Data portability and organization
@@ -93,9 +93,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- Model additions (responseHeaders, matchedEndpointPath), CurlGenerator TDD, EndpointStore.clearLog()
-- [ ] 04-02-PLAN.md -- RequestLogListView with @Query real-time updates, filter chips, search, clear, navigation wiring
-- [ ] 04-03-PLAN.md -- RequestDetailView with request/response inspection, cURL copy to clipboard
+- [x] 04-01-PLAN.md -- Model additions (responseHeaders, matchedEndpointPath), CurlGenerator TDD, EndpointStore.clearLog()
+- [x] 04-02-PLAN.md -- RequestLogListView with @Query real-time updates, filter chips, search, clear, navigation wiring
+- [x] 04-03-PLAN.md -- RequestDetailView with request/response inspection, cURL copy to clipboard
 
 ### Phase 5: Response Templates + Delay
 **Goal**: User can select from built-in templates, save custom templates, and simulate response delays
@@ -211,7 +211,7 @@ Plans:
 | 1. Foundation | 2/2 | ✓ Complete | 2026-02-16 |
 | 2. Server Engine Core | 3/3 | ✓ Complete | 2026-02-16 |
 | 3. Endpoint Editor UI | 3/3 | ✓ Complete | 2026-02-16 |
-| 4. Request Log | 0/3 | Not started | - |
+| 4. Request Log | 3/3 | ✓ Complete | 2026-02-16 |
 | 5. Response Templates + Delay | 0/TBD | Not started | - |
 | 6. Path Parameters + Wildcard Matching | 0/TBD | Not started | - |
 | 7. Import/Export + Collections | 0/TBD | Not started | - |
