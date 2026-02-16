@@ -68,10 +68,12 @@ Plans:
   6. User can add custom response headers as key-value pairs
   7. User can edit JSON response body with validation indicator showing valid/invalid state
   8. User can reorder endpoints via drag handles in list view
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD
+- [ ] 03-01-PLAN.md -- Design tokens (MockPadColors, MockPadTypography, MockPadMetrics) + EndpointListView with delete, toggle, duplicate, reorder
+- [ ] 03-02-PLAN.md -- EndpointEditorView, AddEndpointSheet, StatusCodePickerView, HTTPMethodPickerView
+- [ ] 03-03-PLAN.md -- ResponseBodyEditorView with JSON validation/pretty-print + ResponseHeadersEditorView
 
 ### Phase 4: Request Log
 **Goal**: User can observe incoming requests in real time and inspect full request/response details
