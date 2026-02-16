@@ -24,6 +24,19 @@ final class EndpointStore {
         return (try? modelContext.fetch(descriptor)) ?? []
     }
 
+    var endpointSnapshots: [EndpointSnapshot] {
+        endpoints.map { endpoint in
+            EndpointSnapshot(
+                path: endpoint.path,
+                method: endpoint.httpMethod,
+                statusCode: endpoint.responseStatusCode,
+                responseBody: endpoint.responseBody,
+                responseHeaders: endpoint.responseHeaders,
+                isEnabled: endpoint.isEnabled
+            )
+        }
+    }
+
     var endpointCount: Int {
         let descriptor = FetchDescriptor<MockEndpoint>()
         return (try? modelContext.fetchCount(descriptor)) ?? 0

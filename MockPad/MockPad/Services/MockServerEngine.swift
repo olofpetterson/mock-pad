@@ -39,6 +39,11 @@ actor MockServerEngine {
     /// The actual port the server is listening on (may differ from requested port).
     private(set) var actualPort: UInt16 = 0
 
+    /// Set the request log callback from outside the actor.
+    func setOnRequestLogged(_ callback: (@Sendable (RequestLogData) -> Void)?) {
+        onRequestLogged = callback
+    }
+
     // MARK: - Public API
 
     /// Start the server on the specified port with the given endpoint configuration.
