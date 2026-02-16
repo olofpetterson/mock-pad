@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 4 - Request Log (Plan 2 of 3 complete)
+**Current focus:** Phase 4 - Request Log (Complete)
 
 ## Current Position
 
-Phase: 4 of 11 (Request Log)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-02-16 - Completed 04-02-PLAN.md (Request Log List UI)
+Phase: 4 of 11 (Request Log) -- COMPLETE
+Plan: 3 of 3 in current phase
+Status: Phase Complete
+Last activity: 2026-02-16 - Completed 04-03-PLAN.md (Request Detail View)
 
-Progress: [████░░░░░░] 36%
+Progress: [████░░░░░░] 39%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
+- Total plans completed: 11
 - Average duration: 2 min
-- Total execution time: 0.34 hours
+- Total execution time: 0.36 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [████░░░░░░] 36%
 | 01-foundation | 2 | 4 min | 2 min |
 | 02-server-engine-core | 3 | 7 min | 2.3 min |
 | 03-endpoint-editor-ui | 3 | 6 min | 2 min |
-| 04-request-log | 2 | 4 min | 2 min |
+| 04-request-log | 3 | 5 min | 1.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (2 min), 03-02 (2 min), 03-03 (2 min), 04-01 (3 min), 04-02 (1 min)
+- Last 5 plans: 03-02 (2 min), 03-03 (2 min), 04-01 (3 min), 04-02 (1 min), 04-03 (1 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -85,6 +85,8 @@ Recent decisions affecting current work:
 - Plan 04-02: Toolbar NavigationLink on ContentView (not EndpointListView) avoids modifying EndpointListView's existing toolbar
 - Plan 04-02: Placeholder Text destination for NavigationLink in log list (Plan 04-03 replaces with RequestDetailView)
 - Plan 04-02: Filter AND logic: empty filter set means 'show all' for that category
+- Plan 04-03: DisclosureGroup with @State expanded booleans for independent section collapse control
+- Plan 04-03: Button label swaps text and icon on copy for inline 'Copied!' feedback (no overlay/toast needed)
 
 ### Pending Todos
 
@@ -97,5 +99,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 04-02-PLAN.md (Request Log List UI)
-Resume file: .planning/phases/04-request-log/04-02-SUMMARY.md
+Stopped at: Completed 04-03-PLAN.md (Request Detail View) -- Phase 04 complete
+Resume file: .planning/phases/04-request-log/04-03-SUMMARY.md
