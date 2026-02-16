@@ -30,10 +30,11 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
   3. ServerStore maintains server running state and configuration (port, CORS toggle, auto-start)
   4. ProManager tracks PRO purchase status and enforces 3-endpoint free tier limit
   5. RequestLog model persists timestamp, method, path, status code, response time, headers, body
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD
+- [ ] 01-01-PLAN.md -- SwiftData models (MockEndpoint, RequestLog), HTTPMethod constants, ServerConfiguration, KeychainService, model unit tests
+- [ ] 01-02-PLAN.md -- EndpointStore, ServerStore, ProManager stores, app entry point wiring, store unit tests
 
 ### Phase 2: Server Engine Core
 **Goal**: Local HTTP server runs on localhost, handles requests, matches endpoints, returns responses
@@ -201,7 +202,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/2 | Planned | - |
 | 2. Server Engine Core | 0/TBD | Not started | - |
 | 3. Endpoint Editor UI | 0/TBD | Not started | - |
 | 4. Request Log | 0/TBD | Not started | - |
