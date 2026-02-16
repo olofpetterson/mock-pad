@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 4 - Request Log (Plan 1 of 3 complete)
+**Current focus:** Phase 4 - Request Log (Plan 2 of 3 complete)
 
 ## Current Position
 
 Phase: 4 of 11 (Request Log)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In Progress
-Last activity: 2026-02-16 - Completed 04-01-PLAN.md (Data Pipeline Extensions)
+Last activity: 2026-02-16 - Completed 04-02-PLAN.md (Request Log List UI)
 
-Progress: [███░░░░░░░] 33%
+Progress: [████░░░░░░] 36%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 10
 - Average duration: 2 min
-- Total execution time: 0.32 hours
+- Total execution time: 0.34 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [███░░░░░░░] 33%
 | 01-foundation | 2 | 4 min | 2 min |
 | 02-server-engine-core | 3 | 7 min | 2.3 min |
 | 03-endpoint-editor-ui | 3 | 6 min | 2 min |
-| 04-request-log | 1 | 3 min | 3 min |
+| 04-request-log | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (2 min), 03-01 (2 min), 03-02 (2 min), 03-03 (2 min), 04-01 (3 min)
+- Last 5 plans: 03-01 (2 min), 03-02 (2 min), 03-03 (2 min), 04-01 (3 min), 04-02 (1 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -82,6 +82,9 @@ Recent decisions affecting current work:
 - Plan 04-01: CurlGenerator omits -X flag for GET (curl default) for cleaner output
 - Plan 04-01: CurlGenerator sorts headers alphabetically for deterministic testable output
 - Plan 04-01: Single quote escaping uses shell '\'' convention for cURL body content
+- Plan 04-02: Toolbar NavigationLink on ContentView (not EndpointListView) avoids modifying EndpointListView's existing toolbar
+- Plan 04-02: Placeholder Text destination for NavigationLink in log list (Plan 04-03 replaces with RequestDetailView)
+- Plan 04-02: Filter AND logic: empty filter set means 'show all' for that category
 
 ### Pending Todos
 
@@ -94,5 +97,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 04-01-PLAN.md (Data Pipeline Extensions)
-Resume file: .planning/phases/04-request-log/04-01-SUMMARY.md
+Stopped at: Completed 04-02-PLAN.md (Request Log List UI)
+Resume file: .planning/phases/04-request-log/04-02-SUMMARY.md
