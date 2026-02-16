@@ -41,22 +41,16 @@ struct EndpointEditorView: View {
             .listRowBackground(MockPadColors.panel)
 
             Section {
-                Text("Response body editor (Plan 03)")
-                    .font(MockPadTypography.bodySmall)
-                    .foregroundColor(MockPadColors.textMuted)
-            } header: {
-                Text("> RESPONSE BODY_")
-                    .blueprintLabelStyle()
+                ResponseBodyEditorView(text: $endpoint.responseBody, onChanged: {
+                    saveAndSync()
+                })
             }
             .listRowBackground(MockPadColors.panel)
 
             Section {
-                Text("Response headers editor (Plan 03)")
-                    .font(MockPadTypography.bodySmall)
-                    .foregroundColor(MockPadColors.textMuted)
-            } header: {
-                Text("> HEADERS_")
-                    .blueprintLabelStyle()
+                ResponseHeadersEditorView(endpoint: endpoint, onChanged: {
+                    saveAndSync()
+                })
             }
             .listRowBackground(MockPadColors.panel)
         }
