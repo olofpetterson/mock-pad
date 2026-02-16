@@ -8,7 +8,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 
 - [ ] **Phase 1: Foundation** - SwiftData models, stores, project structure
 - [x] **Phase 2: Server Engine Core** - NWListener, HTTP parsing, basic routing
-- [ ] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
+- [x] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
 - [ ] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
 - [ ] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
 - [ ] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
@@ -71,9 +71,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md -- Design tokens (MockPadColors, MockPadTypography, MockPadMetrics) + EndpointListView with delete, toggle, duplicate, reorder
-- [ ] 03-02-PLAN.md -- EndpointEditorView, AddEndpointSheet, StatusCodePickerView, HTTPMethodPickerView
-- [ ] 03-03-PLAN.md -- ResponseBodyEditorView with JSON validation/pretty-print + ResponseHeadersEditorView
+- [x] 03-01-PLAN.md -- Design tokens (MockPadColors, MockPadTypography, MockPadMetrics) + EndpointListView with delete, toggle, duplicate, reorder
+- [x] 03-02-PLAN.md -- EndpointEditorView, AddEndpointSheet, StatusCodePickerView, HTTPMethodPickerView
+- [x] 03-03-PLAN.md -- ResponseBodyEditorView with JSON validation/pretty-print + ResponseHeadersEditorView
 
 ### Phase 4: Request Log
 **Goal**: User can observe incoming requests in real time and inspect full request/response details
@@ -208,7 +208,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | ✓ Complete | 2026-02-16 |
 | 2. Server Engine Core | 3/3 | ✓ Complete | 2026-02-16 |
-| 3. Endpoint Editor UI | 0/TBD | Not started | - |
+| 3. Endpoint Editor UI | 3/3 | ✓ Complete | 2026-02-16 |
 | 4. Request Log | 0/TBD | Not started | - |
 | 5. Response Templates + Delay | 0/TBD | Not started | - |
 | 6. Path Parameters + Wildcard Matching | 0/TBD | Not started | - |
