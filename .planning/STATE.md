@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 2 Complete - Ready for Phase 3
+**Current focus:** Phase 3 - Endpoint Editor UI (Plan 1 of 3 complete)
 
 ## Current Position
 
-Phase: 2 of 11 (Server Engine Core) - COMPLETE
-Plan: 3 of 3 in current phase
-Status: Phase Complete
-Last activity: 2026-02-16 - Completed 02-03-PLAN.md (Server Store Integration)
+Phase: 3 of 11 (Endpoint Editor UI)
+Plan: 1 of 3 in current phase
+Status: In Progress
+Last activity: 2026-02-16 - Completed 03-01-PLAN.md (Endpoint List View)
 
-Progress: [██░░░░░░░░] 18%
+Progress: [██░░░░░░░░] 22%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
+- Total plans completed: 6
 - Average duration: 2 min
-- Total execution time: 0.18 hours
+- Total execution time: 0.21 hours
 
 **By Phase:**
 
@@ -29,9 +29,10 @@ Progress: [██░░░░░░░░] 18%
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 4 min | 2 min |
 | 02-server-engine-core | 3 | 7 min | 2.3 min |
+| 03-endpoint-editor-ui | 1 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min), 01-02 (2 min), 02-01 (3 min), 02-02 (2 min), 02-03 (2 min)
+- Last 5 plans: 01-02 (2 min), 02-01 (3 min), 02-02 (2 min), 02-03 (2 min), 03-01 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - Plan 02-03: 50ms sleep after start() gives NWListener time to transition to .ready state
 - Plan 02-03: setOnRequestLogged setter added to engine actor for cross-actor callback assignment
 - Plan 02-03: scenePhase .active only auto-starts if autoStart enabled AND server not already running
+- Plan 03-01: Toggle uses Binding closure wrapper instead of @Bindable for read-only EndpointRowView
+- Plan 03-01: Debounced sync uses Task cancellation pattern (300ms) to batch rapid mutations
+- Plan 03-01: PRO limit alert uses basic Alert (full paywall deferred to Phase 9)
 
 ### Pending Todos
 
@@ -78,5 +82,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 02-03-PLAN.md (Server Store Integration) - Phase 2 Complete
-Resume file: .planning/phases/02-server-engine-core/02-03-SUMMARY.md
+Stopped at: Completed 03-01-PLAN.md (Endpoint List View)
+Resume file: .planning/phases/03-endpoint-editor-ui/03-01-SUMMARY.md
