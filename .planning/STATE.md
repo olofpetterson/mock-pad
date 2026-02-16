@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-16)
 ## Current Position
 
 Phase: 2 of 11 (Server Engine Core)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In Progress
-Last activity: 2026-02-16 - Completed 02-01-PLAN.md (HTTP Services)
+Last activity: 2026-02-16 - Completed 02-02-PLAN.md (MockServerEngine)
 
-Progress: [██░░░░░░░░] 14%
+Progress: [██░░░░░░░░] 18%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 4
 - Average duration: 2 min
-- Total execution time: 0.12 hours
+- Total execution time: 0.15 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 4 min | 2 min |
-| 02-server-engine-core | 1 | 3 min | 3 min |
+| 02-server-engine-core | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min), 01-02 (2 min), 02-01 (3 min)
+- Last 5 plans: 01-01 (2 min), 01-02 (2 min), 02-01 (3 min), 02-02 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -56,6 +56,11 @@ Recent decisions affecting current work:
 - Plan 02-01: EndpointMatcher uses sorted() on allowed methods for deterministic 405 responses
 - Plan 02-01: HTTPResponseBuilder sorts headers alphabetically for deterministic test assertions
 - Plan 02-01: EndpointMatcher.EndpointData uses tuple typealias to decouple from SwiftData MockEndpoint model
+- Plan 02-02: EndpointSnapshot Sendable struct carries endpoint config across actor boundary (MockEndpoint cannot cross)
+- Plan 02-02: ObjectIdentifier used as dictionary key for NWConnection tracking (NWConnection is not Hashable)
+- Plan 02-02: All NWListener/NWConnection callbacks use [weak self] + Task bridging for actor isolation
+- Plan 02-02: 503 Service Unavailable returned when 50-connection limit exceeded
+- Plan 02-02: HTTP/1.0 close-after-response: connection cancelled after every response send
 
 ### Pending Todos
 
@@ -68,5 +73,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 02-01-PLAN.md (HTTP Services)
-Resume file: .planning/phases/02-server-engine-core/02-01-SUMMARY.md
+Stopped at: Completed 02-02-PLAN.md (MockServerEngine)
+Resume file: .planning/phases/02-server-engine-core/02-02-SUMMARY.md
