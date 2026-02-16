@@ -45,8 +45,7 @@ struct RequestLogListView: View {
             } else {
                 List(filteredLogs) { log in
                     NavigationLink {
-                        Text("Request Detail") // Placeholder -- replaced by Plan 04-03
-                            .navigationTitle("\(log.method) \(log.path)")
+                        RequestDetailView(log: log)
                     } label: {
                         RequestLogRowView(log: log)
                     }
