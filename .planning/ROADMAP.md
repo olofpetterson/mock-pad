@@ -205,7 +205,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | ✓ Complete | 2026-02-16 |
-| 2. Server Engine Core | 0/3 | Not started | - |
+| 2. Server Engine Core | 3/3 | Complete | 2026-02-16 |
 | 3. Endpoint Editor UI | 0/TBD | Not started | - |
 | 4. Request Log | 0/TBD | Not started | - |
 | 5. Response Templates + Delay | 0/TBD | Not started | - |

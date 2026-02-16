@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 2 - Server Engine Core
+**Current focus:** Phase 2 Complete - Ready for Phase 3
 
 ## Current Position
 
-Phase: 2 of 11 (Server Engine Core)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-02-16 - Completed 02-02-PLAN.md (MockServerEngine)
+Phase: 2 of 11 (Server Engine Core) - COMPLETE
+Plan: 3 of 3 in current phase
+Status: Phase Complete
+Last activity: 2026-02-16 - Completed 02-03-PLAN.md (Server Store Integration)
 
 Progress: [██░░░░░░░░] 18%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
+- Total plans completed: 5
 - Average duration: 2 min
-- Total execution time: 0.15 hours
+- Total execution time: 0.18 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 4 min | 2 min |
-| 02-server-engine-core | 2 | 5 min | 2.5 min |
+| 02-server-engine-core | 3 | 7 min | 2.3 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min), 01-02 (2 min), 02-01 (3 min), 02-02 (2 min)
+- Last 5 plans: 01-01 (2 min), 01-02 (2 min), 02-01 (3 min), 02-02 (2 min), 02-03 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -61,6 +61,11 @@ Recent decisions affecting current work:
 - Plan 02-02: All NWListener/NWConnection callbacks use [weak self] + Task bridging for actor isolation
 - Plan 02-02: 503 Service Unavailable returned when 50-connection limit exceeded
 - Plan 02-02: HTTP/1.0 close-after-response: connection cancelled after every response send
+- Plan 02-03: Port fallback tries configured port then +1 through +10 before reporting error
+- Plan 02-03: Engine created fresh for each port attempt (NWListener cannot restart after cancel)
+- Plan 02-03: 50ms sleep after start() gives NWListener time to transition to .ready state
+- Plan 02-03: setOnRequestLogged setter added to engine actor for cross-actor callback assignment
+- Plan 02-03: scenePhase .active only auto-starts if autoStart enabled AND server not already running
 
 ### Pending Todos
 
@@ -73,5 +78,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 02-02-PLAN.md (MockServerEngine)
-Resume file: .planning/phases/02-server-engine-core/02-02-SUMMARY.md
+Stopped at: Completed 02-03-PLAN.md (Server Store Integration) - Phase 2 Complete
+Resume file: .planning/phases/02-server-engine-core/02-03-SUMMARY.md
