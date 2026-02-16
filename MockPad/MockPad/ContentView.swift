@@ -15,6 +15,15 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             EndpointListView()
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink {
+                            RequestLogListView()
+                        } label: {
+                            Image(systemName: "list.bullet.rectangle")
+                        }
+                    }
+                }
         }
         .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
