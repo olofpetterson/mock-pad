@@ -107,10 +107,12 @@ Plans:
   3. User can save custom response template from current endpoint configuration (PRO)
   4. User can set response delay 0-10,000ms per endpoint (PRO)
   5. Server waits specified delay before sending response (verified in request log timing)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD
+- [ ] 05-01-PLAN.md -- Data layer: MockEndpoint.responseDelayMs, EndpointSnapshot.responseDelayMs, ResponseTemplate @Model, BuiltInTemplates (8 static templates), ModelContainer registration
+- [ ] 05-02-PLAN.md -- Template picker + delay UI: TemplatePickerView, SaveTemplateSheet, EndpointEditorView template/delay sections
+- [ ] 05-03-PLAN.md -- Server engine delay: EndpointMatcher delay data flow, Task.sleep in MockServerEngine before response send
 
 ### Phase 6: Path Parameters + Wildcard Matching
 **Goal**: Server supports dynamic path parameters and wildcard paths with token substitution in responses
