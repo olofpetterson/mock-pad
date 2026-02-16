@@ -135,78 +135,78 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SRVR-01 | — | Pending |
-| SRVR-02 | — | Pending |
-| SRVR-03 | — | Pending |
-| SRVR-04 | — | Pending |
-| SRVR-05 | — | Pending |
-| SRVR-06 | — | Pending |
-| SRVR-07 | — | Pending |
-| SRVR-08 | — | Pending |
-| SRVR-09 | — | Pending |
-| SRVR-10 | — | Pending |
-| SRVR-11 | — | Pending |
-| SRVR-12 | — | Pending |
-| ENDP-01 | — | Pending |
-| ENDP-02 | — | Pending |
-| ENDP-03 | — | Pending |
-| ENDP-04 | — | Pending |
-| ENDP-05 | — | Pending |
-| ENDP-06 | — | Pending |
-| ENDP-07 | — | Pending |
-| ENDP-08 | — | Pending |
-| ENDP-09 | — | Pending |
-| ENDP-10 | — | Pending |
-| ENDP-11 | — | Pending |
-| RESP-01 | — | Pending |
-| RESP-02 | — | Pending |
-| RESP-03 | — | Pending |
-| RESP-04 | — | Pending |
-| RESP-05 | — | Pending |
-| RESP-06 | — | Pending |
-| RESP-07 | — | Pending |
-| RESP-08 | — | Pending |
-| RESP-09 | — | Pending |
-| RLOG-01 | — | Pending |
-| RLOG-02 | — | Pending |
-| RLOG-03 | — | Pending |
-| RLOG-04 | — | Pending |
-| RLOG-05 | — | Pending |
-| RLOG-06 | — | Pending |
-| RLOG-07 | — | Pending |
-| RLOG-08 | — | Pending |
-| RLOG-09 | — | Pending |
-| RLOG-10 | — | Pending |
-| IMPT-01 | — | Pending |
-| IMPT-02 | — | Pending |
-| IMPT-03 | — | Pending |
-| IMPT-04 | — | Pending |
-| IMPT-05 | — | Pending |
-| IMPT-06 | — | Pending |
-| EXPT-01 | — | Pending |
-| EXPT-02 | — | Pending |
-| EXPT-03 | — | Pending |
-| EXPT-04 | — | Pending |
-| PRO-01 | — | Pending |
-| PRO-02 | — | Pending |
-| PRO-03 | — | Pending |
-| PRO-04 | — | Pending |
-| PRO-05 | — | Pending |
-| NAVI-01 | — | Pending |
-| NAVI-02 | — | Pending |
-| NAVI-03 | — | Pending |
-| NAVI-04 | — | Pending |
-| ACCS-01 | — | Pending |
-| ACCS-02 | — | Pending |
-| ACCS-03 | — | Pending |
-| ACCS-04 | — | Pending |
-| ACCS-05 | — | Pending |
+| SRVR-01 | Phase 2 | Pending |
+| SRVR-02 | Phase 2 | Pending |
+| SRVR-03 | Phase 2 | Pending |
+| SRVR-04 | Phase 2 | Pending |
+| SRVR-05 | Phase 2 | Pending |
+| SRVR-06 | Phase 2 | Pending |
+| SRVR-07 | Phase 2 | Pending |
+| SRVR-08 | Phase 2 | Pending |
+| SRVR-09 | Phase 2 | Pending |
+| SRVR-10 | Phase 2 | Pending |
+| SRVR-11 | Phase 2 | Pending |
+| SRVR-12 | Phase 2 | Pending |
+| ENDP-01 | Phase 1, Phase 3 | Pending |
+| ENDP-02 | Phase 1, Phase 3 | Pending |
+| ENDP-03 | Phase 1, Phase 3 | Pending |
+| ENDP-04 | Phase 3 | Pending |
+| ENDP-05 | Phase 3 | Pending |
+| ENDP-06 | Phase 6 | Pending |
+| ENDP-07 | Phase 6 | Pending |
+| ENDP-08 | Phase 6 | Pending |
+| ENDP-09 | Phase 3 | Pending |
+| ENDP-10 | Phase 7 | Pending |
+| ENDP-11 | Phase 1 | Pending |
+| RESP-01 | Phase 3 | Pending |
+| RESP-02 | Phase 3 | Pending |
+| RESP-03 | Phase 3 | Pending |
+| RESP-04 | Phase 3 | Pending |
+| RESP-05 | Phase 3 | Pending |
+| RESP-06 | Phase 5 | Pending |
+| RESP-07 | Phase 5 | Pending |
+| RESP-08 | Phase 5 | Pending |
+| RESP-09 | Phase 6 | Pending |
+| RLOG-01 | Phase 4 | Pending |
+| RLOG-02 | Phase 4 | Pending |
+| RLOG-03 | Phase 4 | Pending |
+| RLOG-04 | Phase 4 | Pending |
+| RLOG-05 | Phase 4 | Pending |
+| RLOG-06 | Phase 4 | Pending |
+| RLOG-07 | Phase 4 | Pending |
+| RLOG-08 | Phase 4 | Pending |
+| RLOG-09 | Phase 4 | Pending |
+| RLOG-10 | Phase 4 | Pending |
+| IMPT-01 | Phase 8 | Pending |
+| IMPT-02 | Phase 8 | Pending |
+| IMPT-03 | Phase 8 | Pending |
+| IMPT-04 | Phase 8 | Pending |
+| IMPT-05 | Phase 8 | Pending |
+| IMPT-06 | Phase 8 | Pending |
+| EXPT-01 | Phase 7 | Pending |
+| EXPT-02 | Phase 7 | Pending |
+| EXPT-03 | Phase 7 | Pending |
+| EXPT-04 | Phase 7 | Pending |
+| PRO-01 | Phase 9 | Pending |
+| PRO-02 | Phase 9 | Pending |
+| PRO-03 | Phase 9 | Pending |
+| PRO-04 | Phase 9 | Pending |
+| PRO-05 | Phase 9 | Pending |
+| NAVI-01 | Phase 10 | Pending |
+| NAVI-02 | Phase 10 | Pending |
+| NAVI-03 | Phase 10 | Pending |
+| NAVI-04 | Phase 10 | Pending |
+| ACCS-01 | Phase 11 | Pending |
+| ACCS-02 | Phase 11 | Pending |
+| ACCS-03 | Phase 11 | Pending |
+| ACCS-04 | Phase 11 | Pending |
+| ACCS-05 | Phase 11 | Pending |
 
 **Coverage:**
 - v1 requirements: 56 total
-- Mapped to phases: 0
-- Unmapped: 56
+- Mapped to phases: 56
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-16*
-*Last updated: 2026-02-16 after initial definition*
+*Last updated: 2026-02-16 after roadmap creation with 100% requirement coverage*
