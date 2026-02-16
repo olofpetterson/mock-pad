@@ -1,0 +1,10 @@
+services:
+  claude-sandbox-mock-pad:
+    build: .
+    volumes:
+      - .:/workspace
+      - ~/.claude:/home/claudeuser/.claude  # Credentials för claudeuser
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    stdin_open: true
+    tty: true
