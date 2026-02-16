@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 3 - Endpoint Editor UI (Plan 1 of 3 complete)
+**Current focus:** Phase 3 - Endpoint Editor UI (Plan 2 of 3 complete)
 
 ## Current Position
 
 Phase: 3 of 11 (Endpoint Editor UI)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In Progress
-Last activity: 2026-02-16 - Completed 03-01-PLAN.md (Endpoint List View)
+Last activity: 2026-02-16 - Completed 03-02-PLAN.md (Endpoint Editor Form)
 
-Progress: [██░░░░░░░░] 22%
+Progress: [███░░░░░░░] 26%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
+- Total plans completed: 7
 - Average duration: 2 min
-- Total execution time: 0.21 hours
+- Total execution time: 0.24 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [██░░░░░░░░] 22%
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 4 min | 2 min |
 | 02-server-engine-core | 3 | 7 min | 2.3 min |
-| 03-endpoint-editor-ui | 1 | 2 min | 2 min |
+| 03-endpoint-editor-ui | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (2 min), 02-01 (3 min), 02-02 (2 min), 02-03 (2 min), 03-01 (2 min)
+- Last 5 plans: 02-01 (3 min), 02-02 (2 min), 02-03 (2 min), 03-01 (2 min), 03-02 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -70,6 +70,9 @@ Recent decisions affecting current work:
 - Plan 03-01: Toggle uses Binding closure wrapper instead of @Bindable for read-only EndpointRowView
 - Plan 03-01: Debounced sync uses Task cancellation pattern (300ms) to batch rapid mutations
 - Plan 03-01: PRO limit alert uses basic Alert (full paywall deferred to Phase 9)
+- Plan 03-02: @Bindable for EndpointEditorView enables direct two-way binding to @Model properties
+- Plan 03-02: NavigationLink wraps EndpointRowView (avoids Hashable conformance issues with @Model)
+- Plan 03-02: Auto-save on every field onChange with immediate SwiftData save + 300ms debounced engine sync
 
 ### Pending Todos
 
@@ -82,5 +85,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-16
-Stopped at: Completed 03-01-PLAN.md (Endpoint List View)
-Resume file: .planning/phases/03-endpoint-editor-ui/03-01-SUMMARY.md
+Stopped at: Completed 03-02-PLAN.md (Endpoint Editor Form)
+Resume file: .planning/phases/03-endpoint-editor-ui/03-02-SUMMARY.md
