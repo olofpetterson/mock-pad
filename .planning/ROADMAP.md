@@ -7,7 +7,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 ## Phases
 
 - [ ] **Phase 1: Foundation** - SwiftData models, stores, project structure
-- [ ] **Phase 2: Server Engine Core** - NWListener, HTTP parsing, basic routing
+- [x] **Phase 2: Server Engine Core** - NWListener, HTTP parsing, basic routing
 - [ ] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
 - [ ] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
 - [ ] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
@@ -51,9 +51,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- TDD pure HTTP services (HTTPRequestParser, HTTPResponseBuilder, EndpointMatcher) with ~37 unit tests
-- [ ] 02-02-PLAN.md -- MockServerEngine actor with NWListener, connection management, Sendable DTOs
-- [ ] 02-03-PLAN.md -- ServerStore engine integration, port fallback, scenePhase lifecycle (auto-stop/restart)
+- [x] 02-01-PLAN.md -- TDD pure HTTP services (HTTPRequestParser, HTTPResponseBuilder, EndpointMatcher) with ~37 unit tests
+- [x] 02-02-PLAN.md -- MockServerEngine actor with NWListener, connection management, Sendable DTOs
+- [x] 02-03-PLAN.md -- ServerStore engine integration, port fallback, scenePhase lifecycle (auto-stop/restart)
 
 ### Phase 3: Endpoint Editor UI
 **Goal**: User can create, edit, delete, and configure mock endpoints through SwiftUI interface
@@ -205,7 +205,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | ✓ Complete | 2026-02-16 |
-| 2. Server Engine Core | 3/3 | Complete | 2026-02-16 |
+| 2. Server Engine Core | 3/3 | ✓ Complete | 2026-02-16 |
 | 3. Endpoint Editor UI | 0/TBD | Not started | - |
 | 4. Request Log | 0/TBD | Not started | - |
 | 5. Response Templates + Delay | 0/TBD | Not started | - |
