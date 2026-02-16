@@ -16,10 +16,14 @@ struct EndpointListView: View {
     var body: some View {
         List {
             ForEach(endpointStore.endpoints) { endpoint in
-                EndpointRowView(endpoint: endpoint) { newValue in
-                    endpoint.isEnabled = newValue
-                    endpointStore.updateEndpoint()
-                    debouncedSyncEngine()
+                NavigationLink {
+                    EndpointEditorView(endpoint: endpoint)
+                } label: {
+                    EndpointRowView(endpoint: endpoint) { newValue in
+                        endpoint.isEnabled = newValue
+                        endpointStore.updateEndpoint()
+                        debouncedSyncEngine()
+                    }
                 }
                 .swipeActions(edge: .leading) {
                     Button {
@@ -63,7 +67,7 @@ struct EndpointListView: View {
             }
         }
         .sheet(isPresented: $showAddSheet) {
-            Text("Add Endpoint")
+            AddEndpointSheet()
         }
         .alert("PRO Required", isPresented: $showProAlert) {
             Button("OK", role: .cancel) {}
