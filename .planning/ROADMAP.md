@@ -48,10 +48,12 @@ Plans:
   5. Server returns 404 JSON error for unmatched paths and 405 with Allow header for unmatched methods
   6. Server auto-stops when app backgrounds and auto-restarts when foregrounded (if auto-start enabled)
   7. Server handles CORS preflight OPTIONS requests automatically with 204 response
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD
+- [ ] 02-01-PLAN.md -- TDD pure HTTP services (HTTPRequestParser, HTTPResponseBuilder, EndpointMatcher) with ~37 unit tests
+- [ ] 02-02-PLAN.md -- MockServerEngine actor with NWListener, connection management, Sendable DTOs
+- [ ] 02-03-PLAN.md -- ServerStore engine integration, port fallback, scenePhase lifecycle (auto-stop/restart)
 
 ### Phase 3: Endpoint Editor UI
 **Goal**: User can create, edit, delete, and configure mock endpoints through SwiftUI interface
@@ -203,7 +205,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | ✓ Complete | 2026-02-16 |
-| 2. Server Engine Core | 0/TBD | Not started | - |
+| 2. Server Engine Core | 0/3 | Not started | - |
 | 3. Endpoint Editor UI | 0/TBD | Not started | - |
 | 4. Request Log | 0/TBD | Not started | - |
 | 5. Response Templates + Delay | 0/TBD | Not started | - |
