@@ -13,8 +13,8 @@ struct ContentView: View {
     @Environment(EndpointStore.self) private var endpointStore
 
     var body: some View {
-        VStack {
-            Text("MockPad")
+        NavigationStack {
+            EndpointListView()
         }
         .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
