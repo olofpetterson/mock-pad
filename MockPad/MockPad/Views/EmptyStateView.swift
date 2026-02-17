@@ -10,6 +10,7 @@ import SwiftUI
 struct EmptyStateView: View {
     @Environment(EndpointStore.self) private var endpointStore
     @Environment(ServerStore.self) private var serverStore
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion // Reduce Motion: guard any future animations with this property (ACCS-03)
     @ScaledMetric(relativeTo: .largeTitle) private var emptyIconSize: CGFloat = 48
 
     var body: some View {
@@ -19,6 +20,7 @@ struct EmptyStateView: View {
             Image(systemName: "antenna.radiowaves.left.and.right.slash")
                 .font(.system(size: emptyIconSize))
                 .foregroundStyle(MockPadColors.textDisabled)
+                .accessibilityHidden(true)
 
             Text("No Endpoints")
                 .font(MockPadTypography.sectionTitle)

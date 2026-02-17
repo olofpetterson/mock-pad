@@ -34,6 +34,7 @@ struct ProPaywallView: View {
                                 .font(.system(size: headerIconSize))
                                 .foregroundStyle(MockPadColors.accent)
                         }
+                        .accessibilityHidden(true)
 
                         Text("MockPad PRO")
                             .font(MockPadTypography.title)
@@ -52,6 +53,7 @@ struct ProPaywallView: View {
                                 Image(systemName: features[index].icon)
                                     .foregroundStyle(MockPadColors.accent)
                                     .frame(width: 24, height: 24)
+                                    .accessibilityHidden(true)
 
                                 Text(features[index].title)
                                     .font(MockPadTypography.monoSmall)
@@ -62,6 +64,7 @@ struct ProPaywallView: View {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(MockPadColors.accent)
                                     .opacity(0.6)
+                                    .accessibilityHidden(true)
                             }
                             .padding(MockPadMetrics.panelContentPadding)
                             .background(MockPadColors.panel)
@@ -70,6 +73,7 @@ struct ProPaywallView: View {
                                 RoundedRectangle(cornerRadius: MockPadMetrics.cornerRadius)
                                     .stroke(MockPadColors.proBorder, lineWidth: MockPadMetrics.borderWidth)
                             )
+                            .accessibilityElement(children: .combine)
                         }
                     }
 
@@ -166,6 +170,7 @@ struct ProPaywallView: View {
                     } label: {
                         Image(systemName: "xmark")
                     }
+                    .accessibilityLabel("Dismiss")
                 }
             }
         }

@@ -101,6 +101,8 @@ struct TemplatePickerView: View {
                                 .foregroundStyle(MockPadColors.accent)
                         }
                     }
+                    .accessibilityLabel("PRO feature, locked")
+                    .accessibilityHint("Double tap to view PRO upgrade")
                     .listRowBackground(MockPadColors.panel)
                 }
             } header: {

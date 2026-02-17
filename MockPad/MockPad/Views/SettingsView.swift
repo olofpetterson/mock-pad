@@ -73,6 +73,7 @@ struct SettingsView: View {
                 } label: {
                     Label("Clear Request Log", systemImage: "trash")
                 }
+                .accessibilityLabel("Clear request log")
 
                 Button {
                     showImporter = true
@@ -236,5 +237,6 @@ struct SettingsView: View {
                     .foregroundStyle(MockPadColors.textMuted)
             }
         }
+        .accessibilityLabel("\(name), \(subtitle), opens App Store")
     }
 }

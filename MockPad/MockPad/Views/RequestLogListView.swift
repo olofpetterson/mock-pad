@@ -67,6 +67,7 @@ struct RequestLogListView: View {
                 } label: {
                     Image(systemName: "trash")
                 }
+                .accessibilityLabel("Clear request log")
                 .disabled(logs.isEmpty)
             }
         }
@@ -81,6 +82,7 @@ struct RequestLogListView: View {
                 Image(systemName: "server.rack")
                     .font(.system(size: emptyIconSize))
                     .foregroundColor(MockPadColors.textDisabled)
+                    .accessibilityHidden(true)
                     .padding(.bottom, 8)
                 Text("Start the server to begin logging requests.")
                     .font(MockPadTypography.bodySmall)
@@ -90,6 +92,7 @@ struct RequestLogListView: View {
                 Image(systemName: "antenna.radiowaves.left.and.right")
                     .font(.system(size: emptyIconSize))
                     .foregroundColor(MockPadColors.textDisabled)
+                    .accessibilityHidden(true)
                     .padding(.bottom, 8)
                 Text("Waiting for requests...")
                     .font(MockPadTypography.bodySmall)
@@ -99,6 +102,7 @@ struct RequestLogListView: View {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .font(.system(size: emptyIconSize))
                     .foregroundColor(MockPadColors.textDisabled)
+                    .accessibilityHidden(true)
                     .padding(.bottom, 8)
                 Text("No requests match your filters.")
                     .font(MockPadTypography.bodySmall)

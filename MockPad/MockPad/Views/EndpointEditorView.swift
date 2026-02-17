@@ -86,6 +86,8 @@ struct EndpointEditorView: View {
                         Color.clear
                             .contentShape(Rectangle())
                             .onTapGesture { showPaywall = true }
+                            .accessibilityLabel("PRO feature, locked")
+                            .accessibilityHint("Double tap to view PRO upgrade")
                     }
                 }
             } header: {
@@ -119,6 +121,8 @@ struct EndpointEditorView: View {
                             step: 100
                         )
                         .tint(MockPadColors.accent)
+                        .accessibilityLabel("Response delay, \(endpoint.responseDelayMs) milliseconds")
+                        .accessibilityValue("\(endpoint.responseDelayMs) milliseconds")
 
                         HStack {
                             Text("0ms")
@@ -138,6 +142,8 @@ struct EndpointEditorView: View {
                         Color.clear
                             .contentShape(Rectangle())
                             .onTapGesture { showPaywall = true }
+                            .accessibilityLabel("PRO feature, locked")
+                            .accessibilityHint("Double tap to view PRO upgrade")
                     }
                 }
             } header: {
