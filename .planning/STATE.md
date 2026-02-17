@@ -144,6 +144,11 @@ Recent decisions affecting current work:
 - Plan 09-02: Overlay tap target (Color.clear + contentShape + onTapGesture) catches taps on dimmed PRO sections
 - Plan 09-02: PRO lock in TemplatePickerView wrapped in Button for direct paywall trigger
 - Plan 09-02: Paywall sheet in CollectionFilterChipsView attached to ScrollView inside conditional block
+- Plan 10-01: SampleEndpointGenerator uses caseless enum pattern matching BuiltInTemplates, CurlGenerator convention
+- Plan 10-01: ServerStatusBarView uses RoundedRectangle button background with 0.15 opacity for subtle start/stop tint
+- Plan 10-01: SettingsView uses Binding(get:/set:) wrapper for ServerStore properties (consistent with existing pattern)
+- Plan 10-01: Ecosystem links use itms-apps:// URL scheme for direct App Store opening
+- Plan 10-01: EmptyStateView auto-starts server after creating sample endpoints for instant gratification
 - Plan 10-02: localhostOnly defaults to true (security-first: only localhost connections by default)
 - Plan 10-02: NWParameters.requiredLocalEndpoint binds to IPv4 loopback when localhostOnly is true
 - Plan 10-02: acceptLocalOnly toggled alongside requiredLocalEndpoint for defense-in-depth
