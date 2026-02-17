@@ -9,17 +9,17 @@ See: .planning/PROJECT.md (updated 2026-02-16)
 
 ## Current Position
 
-Phase: 8 of 11 (OpenAPI Import)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-02-17 - Completed 08-02-PLAN.md (OpenAPIParser + MockResponseGenerator)
+Phase: 8 of 11 (OpenAPI Import) -- COMPLETE
+Plan: 3 of 3 in current phase
+Status: Phase Complete
+Last activity: 2026-02-17 - Completed 08-03-PLAN.md (OpenAPI Preview UI)
 
-Progress: [████████░░] 76%
+Progress: [████████░░] 79%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 22
 - Average duration: 2 min
 - Total execution time: 0.7 hours
 
@@ -34,10 +34,10 @@ Progress: [████████░░] 76%
 | 05-response-templates-delay | 3 | 5 min | 1.7 min |
 | 06-path-parameters-wildcard-matching | 2 | 3 min | 1.5 min |
 | 07-import-export-collections | 3 | 6 min | 2 min |
-| 08-openapi-import | 2 | 6 min | 3 min |
+| 08-openapi-import | 3 | 8 min | 2.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-01 (3 min), 07-02 (1 min), 07-03 (2 min), 08-01 (3 min), 08-02 (3 min)
+- Last 5 plans: 07-02 (1 min), 07-03 (2 min), 08-01 (3 min), 08-02 (3 min), 08-03 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -130,6 +130,10 @@ Recent decisions affecting current work:
 - Plan 08-02: allOf merges properties from all sub-schemas; oneOf/anyOf uses first option only
 - Plan 08-02: Path parameter conversion via Swift Regex for {param} -> :param transformation
 - Plan 08-02: Global warnings for webhooks, securitySchemes, schema composition; per-endpoint warnings for callbacks and security
+- Plan 08-03: Checkbox selection via Button with checkmark.square.fill/square images (toggleStyle(.checkbox) not available on iOS)
+- Plan 08-03: Parallel Bool array for selections rather than mutating DiscoveredEndpoint (struct immutability in ForEach)
+- Plan 08-03: Reuse existing importError/showImportError state for OpenAPI parse errors (single error alert pattern)
+- Plan 08-03: OpenAPI import is PRO-only feature (menu item gated, not just endpoint limit)
 
 ### Pending Todos
 
@@ -142,5 +146,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 08-02-PLAN.md (OpenAPIParser + MockResponseGenerator)
-Resume file: .planning/phases/08-openapi-import/08-02-SUMMARY.md
+Stopped at: Completed 08-03-PLAN.md (OpenAPI Preview UI) - Phase 8 complete
+Resume file: .planning/phases/08-openapi-import/08-03-SUMMARY.md
