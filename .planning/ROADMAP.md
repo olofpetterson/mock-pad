@@ -192,10 +192,12 @@ Plans:
   2. iPhone uses TabView with 3 tabs (Endpoints, Log, Settings) and persistent server status bar
   3. Empty state shows "Create Sample API" button that generates 4 sample CRUD endpoints and auto-starts server
   4. Settings screen includes port config, localhost-only toggle, CORS toggle, auto-start toggle, clear log, import/export, about, ecosystem links
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD
+- [ ] 10-01-PLAN.md -- New building-block views: SampleEndpointGenerator, ServerStatusBarView, EmptyStateView, SettingsView
+- [ ] 10-02-PLAN.md -- Localhost-only toggle: ServerConfiguration + ServerStore + MockServerEngine loopback binding + SettingsView toggle
+- [ ] 10-03-PLAN.md -- Adaptive ContentView refactor: iPad NavigationSplitView (3-column) + iPhone TabView (3-tab) + SidebarView + empty state integration
 
 ### Phase 11: Accessibility
 **Goal**: All interactive elements are accessible via VoiceOver, text scales with Dynamic Type, animations respect Reduce Motion
@@ -225,7 +227,7 @@ Plans:
 | 7. Import/Export + Collections | 3/3 | ✓ Complete | 2026-02-17 |
 | 8. OpenAPI Import | 3/3 | ✓ Complete | 2026-02-17 |
 | 9. PRO Features | 2/2 | ✓ Complete | 2026-02-17 |
-| 10. Navigation Polish | 0/TBD | Not started | - |
+| 10. Navigation Polish | 0/3 | Not started | - |
 | 11. Accessibility | 0/TBD | Not started | - |
 
 ---
