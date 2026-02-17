@@ -11,6 +11,8 @@ struct EndpointEditorView: View {
     @Environment(ServerStore.self) private var serverStore
     @Environment(ProManager.self) private var proManager
     @State private var syncTask: Task<Void, Never>?
+    @State private var newCollectionName = ""
+    @State private var showNewCollectionField = false
 
     var body: some View {
         Form {
@@ -37,6 +39,49 @@ struct EndpointEditorView: View {
                 StatusCodePickerView(selectedCode: $endpoint.responseStatusCode)
             } header: {
                 Text("> STATUS CODE_")
+                    .blueprintLabelStyle()
+            }
+            .listRowBackground(MockPadColors.panel)
+
+            Section {
+                Group {
+                    Picker("Collection", selection: $endpoint.collectionName) {
+                        Text("None").tag(String?.none)
+                        ForEach(endpointStore.collectionNames, id: \.self) { name in
+                            Text(name).tag(String?.some(name))
+                        }
+                        if !newCollectionName.isEmpty,
+                           !endpointStore.collectionNames.contains(newCollectionName) {
+                            Text(newCollectionName).tag(String?.some(newCollectionName))
+                        }
+                    }
+                    .pickerStyle(.menu)
+
+                    if showNewCollectionField {
+                        HStack {
+                            TextField("Collection name", text: $newCollectionName)
+                                .font(MockPadTypography.monoInput)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.never)
+                            Button("Create") {
+                                guard !newCollectionName.isEmpty else { return }
+                                endpoint.collectionName = newCollectionName
+                                showNewCollectionField = false
+                                newCollectionName = ""
+                                saveAndSync()
+                            }
+                            .disabled(newCollectionName.isEmpty)
+                        }
+                    } else {
+                        Button("New Collection") {
+                            showNewCollectionField = true
+                        }
+                    }
+                }
+                .opacity(proManager.isPro ? 1 : 0.4)
+                .allowsHitTesting(proManager.isPro)
+            } header: {
+                Text("> COLLECTION_")
                     .blueprintLabelStyle()
             }
             .listRowBackground(MockPadColors.panel)
@@ -114,6 +159,9 @@ struct EndpointEditorView: View {
             saveAndSync()
         }
         .onChange(of: endpoint.responseDelayMs) { _, _ in
+            saveAndSync()
+        }
+        .onChange(of: endpoint.collectionName) { _, _ in
             saveAndSync()
         }
     }
