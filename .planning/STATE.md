@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 9 - Pro Features
+**Current focus:** Phase 10 - Navigation Polish
 
 ## Current Position
 
-Phase: 9 of 11 (Pro Features)
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-02-17 - Completed 09-02-PLAN.md (PRO Paywall UI)
+Phase: 10 of 11 (Navigation Polish)
+Plan: 2 of 3 in current phase
+Status: In Progress
+Last activity: 2026-02-17 - Completed 10-02-PLAN.md (Localhost-Only Binding)
 
-Progress: [█████████░] 86%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24
+- Total plans completed: 26
 - Average duration: 2 min
-- Total execution time: 0.7 hours
+- Total execution time: 0.8 hours
 
 **By Phase:**
 
@@ -36,9 +36,10 @@ Progress: [█████████░] 86%
 | 07-import-export-collections | 3 | 6 min | 2 min |
 | 08-openapi-import | 3 | 8 min | 2.7 min |
 | 09-pro-features | 2 | 3 min | 1.5 min |
+| 10-navigation-polish | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-01 (3 min), 08-02 (3 min), 08-03 (2 min), 09-01 (1 min), 09-02 (2 min)
+- Last 5 plans: 08-03 (2 min), 09-01 (1 min), 09-02 (2 min), 10-01 (2 min), 10-02 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -143,6 +144,9 @@ Recent decisions affecting current work:
 - Plan 09-02: Overlay tap target (Color.clear + contentShape + onTapGesture) catches taps on dimmed PRO sections
 - Plan 09-02: PRO lock in TemplatePickerView wrapped in Button for direct paywall trigger
 - Plan 09-02: Paywall sheet in CollectionFilterChipsView attached to ScrollView inside conditional block
+- Plan 10-02: localhostOnly defaults to true (security-first: only localhost connections by default)
+- Plan 10-02: NWParameters.requiredLocalEndpoint binds to IPv4 loopback when localhostOnly is true
+- Plan 10-02: acceptLocalOnly toggled alongside requiredLocalEndpoint for defense-in-depth
 
 ### Pending Todos
 
@@ -155,5 +159,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 09-02-PLAN.md (PRO Paywall UI) - Phase 09 complete
-Resume file: .planning/phases/09-pro-features/09-02-SUMMARY.md
+Stopped at: Completed 10-02-PLAN.md (Localhost-Only Binding)
+Resume file: .planning/phases/10-navigation-polish/10-02-SUMMARY.md
