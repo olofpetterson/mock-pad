@@ -160,10 +160,12 @@ Plans:
   4. Imported endpoints generate mock response bodies from schema examples or type-based generation
   5. OpenAPI path parameters ({id}) are converted to MockPad format (:id) automatically
   6. User sees warnings for unsupported OpenAPI features (allOf/oneOf, webhooks) during preview
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD
+- [ ] 08-01-PLAN.md -- TDD YAMLConverter: minimal YAML-to-JSON converter for OpenAPI YAML subset (~15 tests)
+- [ ] 08-02-PLAN.md -- TDD OpenAPIParser + MockResponseGenerator: spec parsing, $ref resolution, mock response generation (~34 tests)
+- [ ] 08-03-PLAN.md -- OpenAPIPreviewSheet UI + EndpointListView Import OpenAPI menu integration
 
 ### Phase 9: PRO Features
 **Goal**: StoreKit 2 integration enforces 3-endpoint free tier and unlocks PRO features with $5.99 purchase
@@ -220,7 +222,7 @@ Plans:
 | 5. Response Templates + Delay | 3/3 | ✓ Complete | 2026-02-17 |
 | 6. Path Parameters + Wildcard Matching | 2/2 | ✓ Complete | 2026-02-17 |
 | 7. Import/Export + Collections | 3/3 | ✓ Complete | 2026-02-17 |
-| 8. OpenAPI Import | 0/TBD | Not started | - |
+| 8. OpenAPI Import | 0/3 | Not started | - |
 | 9. PRO Features | 0/TBD | Not started | - |
 | 10. Navigation Polish | 0/TBD | Not started | - |
 | 11. Accessibility | 0/TBD | Not started | - |
