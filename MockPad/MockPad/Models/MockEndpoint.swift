@@ -19,6 +19,7 @@ final class MockEndpoint {
     var responseDelayMs: Int
     var sortOrder: Int
     var createdAt: Date
+    var collectionName: String?
 
     var responseHeaders: [String: String] {
         get {
@@ -38,7 +39,8 @@ final class MockEndpoint {
         responseHeaders: [String: String] = ["Content-Type": "application/json"],
         isEnabled: Bool = true,
         responseDelayMs: Int = 0,
-        sortOrder: Int = 0
+        sortOrder: Int = 0,
+        collectionName: String? = nil
     ) {
         self.path = path
         self.httpMethod = httpMethod
@@ -49,5 +51,6 @@ final class MockEndpoint {
         self.responseDelayMs = responseDelayMs
         self.sortOrder = sortOrder
         self.createdAt = Date()
+        self.collectionName = collectionName
     }
 }

@@ -38,6 +38,84 @@ final class EndpointStore {
         }
     }
 
+    var collectionNames: [String] {
+        Set(endpoints.compactMap(\.collectionName)).sorted()
+    }
+
+    func endpoints(inCollection name: String?) -> [MockEndpoint] {
+        let descriptor = FetchDescriptor<MockEndpoint>(
+            sortBy: [SortDescriptor(\.sortOrder)]
+        )
+        guard let all = try? modelContext.fetch(descriptor) else { return [] }
+        return all.filter { $0.collectionName == name }
+    }
+
+    func importEndpoints(_ imported: [ExportedEndpoint], collectionName: String?, resolution: DuplicateResolution) {
+        let existing = endpoints
+        let maxSortOrder = existing.map(\.sortOrder).max() ?? -1
+
+        switch resolution {
+        case .skip:
+            let nonDuplicates = imported.filter { imp in
+                !existing.contains { ex in
+                    ex.path.lowercased() == imp.path.lowercased() &&
+                    ex.httpMethod.uppercased() == imp.httpMethod.uppercased()
+                }
+            }
+            for (index, ep) in nonDuplicates.enumerated() {
+                let endpoint = MockEndpoint(
+                    path: ep.path,
+                    httpMethod: ep.httpMethod,
+                    responseStatusCode: ep.responseStatusCode,
+                    responseBody: ep.responseBody,
+                    responseHeaders: ep.responseHeaders,
+                    isEnabled: ep.isEnabled,
+                    responseDelayMs: ep.responseDelayMs,
+                    sortOrder: maxSortOrder + 1 + index,
+                    collectionName: collectionName
+                )
+                modelContext.insert(endpoint)
+            }
+        case .replace:
+            for (index, ep) in imported.enumerated() {
+                if let match = existing.first(where: {
+                    $0.path.lowercased() == ep.path.lowercased() &&
+                    $0.httpMethod.uppercased() == ep.httpMethod.uppercased()
+                }) {
+                    modelContext.delete(match)
+                }
+                let endpoint = MockEndpoint(
+                    path: ep.path,
+                    httpMethod: ep.httpMethod,
+                    responseStatusCode: ep.responseStatusCode,
+                    responseBody: ep.responseBody,
+                    responseHeaders: ep.responseHeaders,
+                    isEnabled: ep.isEnabled,
+                    responseDelayMs: ep.responseDelayMs,
+                    sortOrder: maxSortOrder + 1 + index,
+                    collectionName: collectionName
+                )
+                modelContext.insert(endpoint)
+            }
+        case .importAsNew:
+            for (index, ep) in imported.enumerated() {
+                let endpoint = MockEndpoint(
+                    path: ep.path,
+                    httpMethod: ep.httpMethod,
+                    responseStatusCode: ep.responseStatusCode,
+                    responseBody: ep.responseBody,
+                    responseHeaders: ep.responseHeaders,
+                    isEnabled: ep.isEnabled,
+                    responseDelayMs: ep.responseDelayMs,
+                    sortOrder: maxSortOrder + 1 + index,
+                    collectionName: collectionName
+                )
+                modelContext.insert(endpoint)
+            }
+        }
+        try? modelContext.save()
+    }
+
     var endpointCount: Int {
         let descriptor = FetchDescriptor<MockEndpoint>()
         return (try? modelContext.fetchCount(descriptor)) ?? 0
