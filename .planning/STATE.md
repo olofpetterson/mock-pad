@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 8 - OpenAPI Import
+**Current focus:** Phase 9 - Pro Features
 
 ## Current Position
 
-Phase: 8 of 11 (OpenAPI Import) -- COMPLETE
-Plan: 3 of 3 in current phase
-Status: Phase Complete
-Last activity: 2026-02-17 - Completed 08-03-PLAN.md (OpenAPI Preview UI)
+Phase: 9 of 11 (Pro Features)
+Plan: 1 of 2 in current phase
+Status: In Progress
+Last activity: 2026-02-17 - Completed 09-01-PLAN.md (StoreKit 2 IAP Integration)
 
-Progress: [████████░░] 79%
+Progress: [████████░░] 82%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 22
+- Total plans completed: 23
 - Average duration: 2 min
 - Total execution time: 0.7 hours
 
@@ -35,9 +35,10 @@ Progress: [████████░░] 79%
 | 06-path-parameters-wildcard-matching | 2 | 3 min | 1.5 min |
 | 07-import-export-collections | 3 | 6 min | 2 min |
 | 08-openapi-import | 3 | 8 min | 2.7 min |
+| 09-pro-features | 1 | 1 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: 07-02 (1 min), 07-03 (2 min), 08-01 (3 min), 08-02 (3 min), 08-03 (2 min)
+- Last 5 plans: 07-03 (2 min), 08-01 (3 min), 08-02 (3 min), 08-03 (2 min), 09-01 (1 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -134,6 +135,10 @@ Recent decisions affecting current work:
 - Plan 08-03: Parallel Bool array for selections rather than mutating DiscoveredEndpoint (struct immutability in ForEach)
 - Plan 08-03: Reuse existing importError/showImportError state for OpenAPI parse errors (single error alert pattern)
 - Plan 08-03: OpenAPI import is PRO-only feature (menu item gated, not just endpoint limit)
+- Plan 09-01: PurchaseState enum nested inside ProManager for encapsulated purchase flow state
+- Plan 09-01: Transaction listener started in init() for immediate refund/purchase detection
+- Plan 09-01: checkEntitlements() revokes isPro if no valid entitlement found (handles refunds)
+- Plan 09-01: Verification uses try? payloadValue to skip failed verifications gracefully
 
 ### Pending Todos
 
@@ -146,5 +151,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 08-03-PLAN.md (OpenAPI Preview UI) - Phase 8 complete
-Resume file: .planning/phases/08-openapi-import/08-03-SUMMARY.md
+Stopped at: Completed 09-01-PLAN.md (StoreKit 2 IAP Integration)
+Resume file: .planning/phases/09-pro-features/09-01-SUMMARY.md
