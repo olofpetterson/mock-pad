@@ -19,11 +19,12 @@ struct EndpointMatcherTests {
         statusCode: Int = 200,
         responseBody: String = "{}",
         responseHeaders: [String: String] = [:],
-        isEnabled: Bool = true
+        isEnabled: Bool = true,
+        responseDelayMs: Int = 0
     ) -> EndpointMatcher.EndpointData {
         (path: path, method: method, statusCode: statusCode,
          responseBody: responseBody, responseHeaders: responseHeaders,
-         isEnabled: isEnabled)
+         isEnabled: isEnabled, responseDelayMs: responseDelayMs)
     }
 
     // MARK: - Exact Match
@@ -33,7 +34,7 @@ struct EndpointMatcherTests {
             endpoint(path: "/api/users", method: "GET", statusCode: 200, responseBody: "[{\"id\":1}]", responseHeaders: ["Content-Type": "application/json"])
         ]
         let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
-        guard case let .matched(path, method, statusCode, responseBody, responseHeaders) = result else {
+        guard case let .matched(path, method, statusCode, responseBody, responseHeaders, _) = result else {
             Issue.record("Expected .matched but got \(result)")
             return
         }
@@ -143,7 +144,7 @@ struct EndpointMatcherTests {
             endpoint(path: "/api/users", method: "GET", statusCode: 201)
         ]
         let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
-        guard case let .matched(_, _, statusCode, _, _) = result else {
+        guard case let .matched(_, _, statusCode, _, _, _) = result else {
             Issue.record("Expected .matched but got \(result)")
             return
         }

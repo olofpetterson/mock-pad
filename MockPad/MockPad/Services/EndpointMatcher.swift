@@ -17,7 +17,8 @@ enum EndpointMatcher {
     /// Result of matching a request to an endpoint.
     enum MatchResult: Sendable {
         case matched(path: String, method: String, statusCode: Int,
-                     responseBody: String, responseHeaders: [String: String])
+                     responseBody: String, responseHeaders: [String: String],
+                     responseDelayMs: Int)
         case notFound
         case methodNotAllowed(allowedMethods: [String])
     }
@@ -26,7 +27,7 @@ enum EndpointMatcher {
     /// SwiftData model dependency (MockEndpoint is MainActor-isolated).
     typealias EndpointData = (path: String, method: String, statusCode: Int,
                               responseBody: String, responseHeaders: [String: String],
-                              isEnabled: Bool)
+                              isEnabled: Bool, responseDelayMs: Int)
 
     /// Match a request method and path against a list of endpoint data.
     ///
@@ -58,7 +59,8 @@ enum EndpointMatcher {
                 method: match.method,
                 statusCode: match.statusCode,
                 responseBody: match.responseBody,
-                responseHeaders: match.responseHeaders
+                responseHeaders: match.responseHeaders,
+                responseDelayMs: match.responseDelayMs
             )
         }
 
