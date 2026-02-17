@@ -177,10 +177,11 @@ Plans:
   3. PRO paywall shows $5.99 one-time purchase price with "No subscription" messaging
   4. User can purchase PRO via StoreKit 2 and immediately unlock all PRO features
   5. User can restore previous PRO purchase on new device
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD
+- [ ] 09-01-PLAN.md -- StoreKit 2 ProManager integration (product fetch, purchase, restore, transaction listener) + StoreKit Configuration File + product pre-fetch
+- [ ] 09-02-PLAN.md -- ProPaywallView sheet (feature list, purchase button, restore button) + replace all PRO alerts with paywall across 4 views
 
 ### Phase 10: Navigation Polish
 **Goal**: iPad uses 3-column NavigationSplitView, iPhone uses TabView, empty state provides quick-start flow
