@@ -15,7 +15,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [x] **Phase 7: Import/Export + Collections** - Data portability and organization
 - [x] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
 - [x] **Phase 9: PRO Features** - StoreKit 2, paywall, 3-endpoint limit
-- [ ] **Phase 10: Navigation Polish** - iPad/iPhone layouts, empty state
+- [x] **Phase 10: Navigation Polish** - iPad/iPhone layouts, empty state
 - [ ] **Phase 11: Accessibility** - VoiceOver, Dynamic Type, Reduce Motion
 
 ## Phase Details
@@ -180,8 +180,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 09-01-PLAN.md -- StoreKit 2 ProManager integration (product fetch, purchase, restore, transaction listener) + StoreKit Configuration File + product pre-fetch
-- [ ] 09-02-PLAN.md -- ProPaywallView sheet (feature list, purchase button, restore button) + replace all PRO alerts with paywall across 4 views
+- [x] 09-01-PLAN.md -- StoreKit 2 ProManager integration (product fetch, purchase, restore, transaction listener) + StoreKit Configuration File + product pre-fetch
+- [x] 09-02-PLAN.md -- ProPaywallView sheet (feature list, purchase button, restore button) + replace all PRO alerts with paywall across 4 views
 
 ### Phase 10: Navigation Polish
 **Goal**: iPad uses 3-column NavigationSplitView, iPhone uses TabView, empty state provides quick-start flow
@@ -195,9 +195,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 10-01-PLAN.md -- New building-block views: SampleEndpointGenerator, ServerStatusBarView, EmptyStateView, SettingsView
-- [ ] 10-02-PLAN.md -- Localhost-only toggle: ServerConfiguration + ServerStore + MockServerEngine loopback binding + SettingsView toggle
-- [ ] 10-03-PLAN.md -- Adaptive ContentView refactor: iPad NavigationSplitView (3-column) + iPhone TabView (3-tab) + SidebarView + empty state integration
+- [x] 10-01-PLAN.md -- New building-block views: SampleEndpointGenerator, ServerStatusBarView, EmptyStateView, SettingsView
+- [x] 10-02-PLAN.md -- Localhost-only toggle: ServerConfiguration + ServerStore + MockServerEngine loopback binding + SettingsView toggle
+- [x] 10-03-PLAN.md -- Adaptive ContentView refactor: iPad NavigationSplitView (3-column) + iPhone TabView (3-tab) + SidebarView + empty state integration
 
 ### Phase 11: Accessibility
 **Goal**: All interactive elements are accessible via VoiceOver, text scales with Dynamic Type, animations respect Reduce Motion
@@ -227,7 +227,7 @@ Plans:
 | 7. Import/Export + Collections | 3/3 | ✓ Complete | 2026-02-17 |
 | 8. OpenAPI Import | 3/3 | ✓ Complete | 2026-02-17 |
 | 9. PRO Features | 2/2 | ✓ Complete | 2026-02-17 |
-| 10. Navigation Polish | 0/3 | Not started | - |
+| 10. Navigation Polish | 3/3 | ✓ Complete | 2026-02-17 |
 | 11. Accessibility | 0/TBD | Not started | - |
 
 ---
