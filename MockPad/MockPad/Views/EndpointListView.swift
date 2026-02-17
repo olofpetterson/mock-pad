@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct EndpointListView: View {
     @Environment(EndpointStore.self) private var endpointStore
@@ -13,11 +14,25 @@ struct EndpointListView: View {
     @State private var showProAlert = false
     @State private var syncTask: Task<Void, Never>?
     @State private var selectedCollection: String?
+    @State private var showExporter = false
+    @State private var showImporter = false
+    @State private var exportDocument: MockPadDocument?
+    @State private var pendingImport: MockPadExport?
+    @State private var showImportPreview = false
+    @State private var importError: String?
+    @State private var showImportError = false
+    @State private var showExportProAlert = false
 
     private var filteredEndpoints: [MockEndpoint] {
         selectedCollection == nil
             ? endpointStore.endpoints
             : endpointStore.endpoints.filter { $0.collectionName == selectedCollection }
+    }
+
+    private var shareExportFile: MockPadExportFile? {
+        guard !filteredEndpoints.isEmpty else { return nil }
+        guard let data = try? CollectionExporter.export(endpoints: filteredEndpoints, collectionName: selectedCollection) else { return nil }
+        return MockPadExportFile(data: data, filename: selectedCollection ?? "endpoints")
     }
 
     var body: some View {
@@ -68,6 +83,47 @@ struct EndpointListView: View {
                 EditButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button("Export to File", systemImage: "square.and.arrow.down") {
+                        guard proManager.isPro else {
+                            showExportProAlert = true
+                            return
+                        }
+                        do {
+                            exportDocument = try CollectionExporter.exportDocument(
+                                endpoints: filteredEndpoints,
+                                collectionName: selectedCollection
+                            )
+                            showExporter = true
+                        } catch {
+                            importError = error.localizedDescription
+                            showImportError = true
+                        }
+                    }
+                    .disabled(filteredEndpoints.isEmpty)
+
+                    if proManager.isPro, let file = shareExportFile {
+                        ShareLink(
+                            item: file,
+                            preview: SharePreview("MockPad Endpoints", image: Image(systemName: "doc.text"))
+                        )
+                    } else {
+                        Button("Share Collection", systemImage: "square.and.arrow.up.on.square") {
+                            showExportProAlert = true
+                        }
+                        .disabled(!proManager.isPro || filteredEndpoints.isEmpty)
+                    }
+
+                    Divider()
+
+                    Button("Import from File", systemImage: "square.and.arrow.down.on.square") {
+                        showImporter = true
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     if proManager.canAddEndpoint(currentCount: endpointStore.endpointCount) {
                         showAddSheet = true
@@ -79,13 +135,61 @@ struct EndpointListView: View {
                 }
             }
         }
+        .fileExporter(
+            isPresented: $showExporter,
+            document: exportDocument,
+            contentType: .json,
+            defaultFilename: (selectedCollection ?? "endpoints") + ".json"
+        ) { result in
+            if case .failure(let error) = result {
+                importError = error.localizedDescription
+                showImportError = true
+            }
+            exportDocument = nil
+        }
+        .fileImporter(
+            isPresented: $showImporter,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false
+        ) { result in
+            guard let url = (try? result.get())?.first else { return }
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+            do {
+                let data = try Data(contentsOf: url)
+                let export = try CollectionImporter.parse(data: data)
+                pendingImport = export
+                showImportPreview = true
+            } catch {
+                importError = error.localizedDescription
+                showImportError = true
+            }
+        }
         .sheet(isPresented: $showAddSheet) {
             AddEndpointSheet()
+        }
+        .sheet(isPresented: $showImportPreview, onDismiss: {
+            pendingImport = nil
+            debouncedSyncEngine()
+        }) {
+            if let export = pendingImport {
+                ImportPreviewSheet(export: export)
+            }
         }
         .alert("PRO Required", isPresented: $showProAlert) {
             Button("OK", role: .cancel) {}
         } message: {
             Text("Upgrade to PRO to add more than \(ProManager.freeEndpointLimit) endpoints.")
+        }
+        .alert("PRO Required", isPresented: $showExportProAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Upgrade to PRO to export endpoint collections.")
+        }
+        .alert("Import Error", isPresented: $showImportError) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(importError ?? "Unknown error")
         }
     }
 
