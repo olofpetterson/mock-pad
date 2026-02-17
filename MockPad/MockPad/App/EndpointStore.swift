@@ -42,7 +42,7 @@ final class EndpointStore {
 
     var collectionNames: [String] {
         _ = endpointVersion
-        Set(endpoints.compactMap(\.collectionName)).sorted()
+        return Set(endpoints.compactMap(\.collectionName)).sorted()
     }
 
     func endpoint(withID id: PersistentIdentifier) -> MockEndpoint? {
