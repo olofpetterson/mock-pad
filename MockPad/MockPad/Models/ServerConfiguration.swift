@@ -39,4 +39,15 @@ enum ServerConfiguration {
             UserDefaults.standard.set(newValue, forKey: "autoStart")
         }
     }
+
+    static var localhostOnly: Bool {
+        get {
+            UserDefaults.standard.object(forKey: "localhostOnly") == nil
+                ? true
+                : UserDefaults.standard.bool(forKey: "localhostOnly")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "localhostOnly")
+        }
+    }
 }

@@ -20,7 +20,8 @@ struct MockPadApp: App {
         UserDefaults.standard.register(defaults: [
             "serverPort": 8080,
             "corsEnabled": true,
-            "autoStart": true
+            "autoStart": true,
+            "localhostOnly": true
         ])
 
         do {

@@ -26,6 +26,7 @@ actor MockServerEngine {
     private var connectionMap: [ObjectIdentifier: NWConnection] = [:]
     private var endpoints: [EndpointSnapshot] = []
     private var corsEnabled: Bool = true
+    private var localhostOnly: Bool = true
     private let maxConnections = 50
     private let maxRequestSize = 64 * 1024  // 64KB
 
@@ -55,19 +56,31 @@ actor MockServerEngine {
     ///   - port: TCP port to listen on
     ///   - endpoints: Snapshot of endpoint configurations for request matching
     ///   - corsEnabled: Whether to include CORS headers in responses
+    ///   - localhostOnly: Whether to bind to loopback address only (127.0.0.1)
     /// - Throws: MockServerError if already running or port is invalid
-    func start(port: UInt16, endpoints: [EndpointSnapshot], corsEnabled: Bool) throws {
+    func start(port: UInt16, endpoints: [EndpointSnapshot], corsEnabled: Bool, localhostOnly: Bool) throws {
         guard !isListening else {
             throw MockServerError.alreadyRunning
         }
 
-        // Configure TCP parameters for localhost-only operation
-        let parameters = NWParameters.tcp
-        parameters.acceptLocalOnly = true
-        parameters.allowLocalEndpointReuse = true
+        self.localhostOnly = localhostOnly
 
         guard let nwPort = NWEndpoint.Port(rawValue: port) else {
             throw MockServerError.invalidPort
+        }
+
+        // Configure TCP parameters
+        let parameters = NWParameters.tcp
+        parameters.acceptLocalOnly = localhostOnly
+        parameters.allowLocalEndpointReuse = true
+
+        // When localhost-only, bind to loopback address (127.0.0.1) to reject
+        // connections from other devices on the same network
+        if localhostOnly {
+            parameters.requiredLocalEndpoint = NWEndpoint.hostPort(
+                host: NWEndpoint.Host.ipv4(.loopback),
+                port: nwPort
+            )
         }
 
         // MUST create new NWListener each time -- cannot restart cancelled listener

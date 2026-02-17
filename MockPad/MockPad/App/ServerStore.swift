@@ -24,6 +24,10 @@ final class ServerStore {
         didSet { ServerConfiguration.autoStart = autoStart }
     }
 
+    var localhostOnly: Bool {
+        didSet { ServerConfiguration.localhostOnly = localhostOnly }
+    }
+
     private var engine: MockServerEngine?
     var errorMessage: String?
     var actualPort: UInt16 = 0
@@ -36,6 +40,7 @@ final class ServerStore {
         self.port = ServerConfiguration.port
         self.corsEnabled = ServerConfiguration.corsEnabled
         self.autoStart = ServerConfiguration.autoStart
+        self.localhostOnly = ServerConfiguration.localhostOnly
     }
 
     func startServer(endpointStore: EndpointStore) async {
@@ -71,7 +76,7 @@ final class ServerStore {
             }
 
             do {
-                try await newEngine.start(port: tryPort, endpoints: snapshots, corsEnabled: corsEnabled)
+                try await newEngine.start(port: tryPort, endpoints: snapshots, corsEnabled: corsEnabled, localhostOnly: localhostOnly)
                 // Brief delay for listener state to settle
                 try? await Task.sleep(for: .milliseconds(50))
                 let listening = await newEngine.isListening
