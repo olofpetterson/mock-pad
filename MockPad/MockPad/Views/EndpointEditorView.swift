@@ -9,6 +9,7 @@ struct EndpointEditorView: View {
     @Bindable var endpoint: MockEndpoint
     @Environment(EndpointStore.self) private var endpointStore
     @Environment(ServerStore.self) private var serverStore
+    @Environment(ProManager.self) private var proManager
     @State private var syncTask: Task<Void, Never>?
 
     var body: some View {
@@ -40,6 +41,51 @@ struct EndpointEditorView: View {
             }
             .listRowBackground(MockPadColors.panel)
 
+            TemplatePickerView(endpoint: endpoint, onApplied: {
+                saveAndSync()
+            })
+
+            Section {
+                Group {
+                    VStack(alignment: .leading, spacing: MockPadMetrics.paddingSmall) {
+                        HStack {
+                            Text("Delay")
+                                .font(MockPadTypography.monoSmall)
+                            Spacer()
+                            Text("\(endpoint.responseDelayMs)ms")
+                                .font(MockPadTypography.monoSmall)
+                                .foregroundStyle(MockPadColors.accent)
+                        }
+
+                        Slider(
+                            value: Binding(
+                                get: { Double(endpoint.responseDelayMs) },
+                                set: { endpoint.responseDelayMs = Int($0) }
+                            ),
+                            in: 0...10000,
+                            step: 100
+                        )
+                        .tint(MockPadColors.accent)
+
+                        HStack {
+                            Text("0ms")
+                                .font(MockPadTypography.logTimestamp)
+                                .foregroundStyle(MockPadColors.textMuted)
+                            Spacer()
+                            Text("10,000ms")
+                                .font(MockPadTypography.logTimestamp)
+                                .foregroundStyle(MockPadColors.textMuted)
+                        }
+                    }
+                }
+                .opacity(proManager.isPro ? 1 : 0.4)
+                .allowsHitTesting(proManager.isPro)
+            } header: {
+                Text("> RESPONSE DELAY_")
+                    .blueprintLabelStyle()
+            }
+            .listRowBackground(MockPadColors.panel)
+
             Section {
                 ResponseBodyEditorView(text: $endpoint.responseBody, onChanged: {
                     saveAndSync()
@@ -65,6 +111,9 @@ struct EndpointEditorView: View {
             saveAndSync()
         }
         .onChange(of: endpoint.responseStatusCode) { _, _ in
+            saveAndSync()
+        }
+        .onChange(of: endpoint.responseDelayMs) { _, _ in
             saveAndSync()
         }
     }
