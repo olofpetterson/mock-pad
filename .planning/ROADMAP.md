@@ -12,7 +12,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [x] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
 - [x] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
 - [x] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
-- [ ] **Phase 7: Import/Export + Collections** - Data portability and organization
+- [x] **Phase 7: Import/Export + Collections** - Data portability and organization
 - [ ] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
 - [ ] **Phase 9: PRO Features** - StoreKit 2, paywall, 3-endpoint limit
 - [ ] **Phase 10: Navigation Polish** - iPad/iPhone layouts, empty state
@@ -145,9 +145,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 07-01-PLAN.md -- TDD: MockEndpoint.collectionName, Codable export models, CollectionExporter + CollectionImporter services, MockPadDocument, MockPadExportFile, 13 unit tests
-- [ ] 07-02-PLAN.md -- Collection UI: CollectionFilterChipsView, EndpointListView collection filtering, EndpointEditorView collection assignment (PRO)
-- [ ] 07-03-PLAN.md -- Import/Export/Share UI: fileExporter, fileImporter, ShareLink, ImportPreviewSheet with duplicate resolution
+- [x] 07-01-PLAN.md -- TDD: MockEndpoint.collectionName, Codable export models, CollectionExporter + CollectionImporter services, MockPadDocument, MockPadExportFile, 13 unit tests
+- [x] 07-02-PLAN.md -- Collection UI: CollectionFilterChipsView, EndpointListView collection filtering, EndpointEditorView collection assignment (PRO)
+- [x] 07-03-PLAN.md -- Import/Export/Share UI: fileExporter, fileImporter, ShareLink, ImportPreviewSheet with duplicate resolution
 
 ### Phase 8: OpenAPI Import
 **Goal**: User can import OpenAPI 3.x specs from JSON/YAML files and generate mock endpoints with schema-based responses
@@ -219,7 +219,7 @@ Plans:
 | 4. Request Log | 3/3 | ✓ Complete | 2026-02-16 |
 | 5. Response Templates + Delay | 3/3 | ✓ Complete | 2026-02-17 |
 | 6. Path Parameters + Wildcard Matching | 2/2 | ✓ Complete | 2026-02-17 |
-| 7. Import/Export + Collections | 0/3 | Not started | - |
+| 7. Import/Export + Collections | 3/3 | ✓ Complete | 2026-02-17 |
 | 8. OpenAPI Import | 0/TBD | Not started | - |
 | 9. PRO Features | 0/TBD | Not started | - |
 | 10. Navigation Polish | 0/TBD | Not started | - |
