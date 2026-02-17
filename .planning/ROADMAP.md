@@ -11,7 +11,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [x] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
 - [x] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
 - [x] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
-- [ ] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
+- [x] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
 - [ ] **Phase 7: Import/Export + Collections** - Data portability and organization
 - [ ] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
 - [ ] **Phase 9: PRO Features** - StoreKit 2, paywall, 3-endpoint limit
@@ -127,8 +127,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 06-01-PLAN.md -- TDD: Enhanced EndpointMatcher with matchPath (param + wildcard), priority selection, PathParamReplacer token substitution, ~24+ tests
-- [ ] 06-02-PLAN.md -- MockServerEngine integration: pathParams extraction + PathParamReplacer.replace in response pipeline
+- [x] 06-01-PLAN.md -- TDD: Enhanced EndpointMatcher with matchPath (param + wildcard), priority selection, PathParamReplacer token substitution, ~24+ tests
+- [x] 06-02-PLAN.md -- MockServerEngine integration: pathParams extraction + PathParamReplacer.replace in response pipeline
 
 ### Phase 7: Import/Export + Collections
 **Goal**: User can organize endpoints into collections, export as JSON, import from JSON, and share via iOS share sheet
@@ -216,7 +216,7 @@ Plans:
 | 3. Endpoint Editor UI | 3/3 | ✓ Complete | 2026-02-16 |
 | 4. Request Log | 3/3 | ✓ Complete | 2026-02-16 |
 | 5. Response Templates + Delay | 3/3 | ✓ Complete | 2026-02-17 |
-| 6. Path Parameters + Wildcard Matching | 0/TBD | Not started | - |
+| 6. Path Parameters + Wildcard Matching | 2/2 | ✓ Complete | 2026-02-17 |
 | 7. Import/Export + Collections | 0/TBD | Not started | - |
 | 8. OpenAPI Import | 0/TBD | Not started | - |
 | 9. PRO Features | 0/TBD | Not started | - |
