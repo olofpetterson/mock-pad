@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 5 - Response Templates & Delay
+**Current focus:** Phase 6 - Path Parameters & Wildcard Matching
 
 ## Current Position
 
-Phase: 5 of 11 (Response Templates & Delay)
-Plan: 3 of 3 in current phase
-Status: Phase Complete
-Last activity: 2026-02-17 - Completed 05-03-PLAN.md (Server Engine Delay Integration)
+Phase: 6 of 11 (Path Parameters & Wildcard Matching)
+Plan: 1 of 2 in current phase
+Status: In Progress
+Last activity: 2026-02-17 - Completed 06-01-PLAN.md (Path Parameter Matching & Token Substitution)
 
-Progress: [█████░░░░░] 50%
+Progress: [█████░░░░░] 54%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
+- Total plans completed: 15
 - Average duration: 2 min
-- Total execution time: 0.45 hours
+- Total execution time: 0.48 hours
 
 **By Phase:**
 
@@ -32,9 +32,10 @@ Progress: [█████░░░░░] 50%
 | 03-endpoint-editor-ui | 3 | 6 min | 2 min |
 | 04-request-log | 3 | 5 min | 1.7 min |
 | 05-response-templates-delay | 3 | 5 min | 1.7 min |
+| 06-path-parameters-wildcard-matching | 1 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-02 (1 min), 04-03 (1 min), 05-01 (2 min), 05-02 (1 min), 05-03 (2 min)
+- Last 5 plans: 04-03 (1 min), 05-01 (2 min), 05-02 (1 min), 05-03 (2 min), 06-01 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -98,6 +99,11 @@ Recent decisions affecting current work:
 - Plan 05-03: Task.sleep in actor method (non-blocking via reentrancy at suspension point)
 - Plan 05-03: Delay applied after response build but before response time calculation
 - Plan 05-03: Only matched endpoints have delay; 404/405 responses skip delay (server-generated, not endpoint-configured)
+- Plan 06-01: matchPath uses .split(separator: "/") to normalize leading/trailing slashes consistently
+- Plan 06-01: Wildcard * only valid at end of pattern (no mid-path wildcards)
+- Plan 06-01: Specificity scoring: 0=exact, 1=parameterized, 2=wildcard; stable sort preserves array order within same score
+- Plan 06-01: PathParamReplacer uses simple string replacement loop (no escaping, no JSON awareness)
+- Plan 06-01: MockServerEngine applies token substitution after match, before response build
 
 ### Pending Todos
 
@@ -110,5 +116,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 05-03-PLAN.md (Server Engine Delay Integration)
-Resume file: .planning/phases/05-response-templates-delay/05-03-SUMMARY.md
+Stopped at: Completed 06-01-PLAN.md (Path Parameter Matching & Token Substitution)
+Resume file: .planning/phases/06-path-parameters-wildcard-matching/06-01-SUMMARY.md
