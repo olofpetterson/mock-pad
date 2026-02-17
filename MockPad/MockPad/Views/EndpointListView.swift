@@ -38,45 +38,51 @@ struct EndpointListView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            CollectionFilterChipsView(selectedCollection: $selectedCollection)
-                .padding(.vertical, MockPadMetrics.paddingSmall)
+        Group {
+            if endpointStore.endpoints.isEmpty {
+                EmptyStateView()
+            } else {
+                VStack(spacing: 0) {
+                    CollectionFilterChipsView(selectedCollection: $selectedCollection)
+                        .padding(.vertical, MockPadMetrics.paddingSmall)
 
-            List {
-                ForEach(filteredEndpoints) { endpoint in
-                    NavigationLink {
-                        EndpointEditorView(endpoint: endpoint)
-                    } label: {
-                        EndpointRowView(endpoint: endpoint) { newValue in
-                            endpoint.isEnabled = newValue
-                            endpointStore.updateEndpoint()
-                            debouncedSyncEngine()
+                    List {
+                        ForEach(filteredEndpoints) { endpoint in
+                            NavigationLink {
+                                EndpointEditorView(endpoint: endpoint)
+                            } label: {
+                                EndpointRowView(endpoint: endpoint) { newValue in
+                                    endpoint.isEnabled = newValue
+                                    endpointStore.updateEndpoint()
+                                    debouncedSyncEngine()
+                                }
+                            }
+                            .swipeActions(edge: .leading) {
+                                Button {
+                                    duplicateEndpoint(endpoint)
+                                } label: {
+                                    Label("Duplicate", systemImage: "square.on.square")
+                                }
+                                .tint(MockPadColors.accent)
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    endpointStore.deleteEndpoint(endpoint)
+                                    debouncedSyncEngine()
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                            .listRowBackground(MockPadColors.background)
+                            .listRowSeparator(.hidden)
                         }
+                        .onMove(perform: moveEndpoints)
                     }
-                    .swipeActions(edge: .leading) {
-                        Button {
-                            duplicateEndpoint(endpoint)
-                        } label: {
-                            Label("Duplicate", systemImage: "square.on.square")
-                        }
-                        .tint(MockPadColors.accent)
-                    }
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            endpointStore.deleteEndpoint(endpoint)
-                            debouncedSyncEngine()
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                    }
-                    .listRowBackground(MockPadColors.background)
-                    .listRowSeparator(.hidden)
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                    .background(MockPadColors.background)
                 }
-                .onMove(perform: moveEndpoints)
             }
-            .listStyle(.plain)
-            .scrollContentBackground(.hidden)
-            .background(MockPadColors.background)
         }
         .background(MockPadColors.background)
         .navigationTitle("Endpoints")
