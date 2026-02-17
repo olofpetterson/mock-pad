@@ -13,7 +13,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [x] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
 - [x] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
 - [x] **Phase 7: Import/Export + Collections** - Data portability and organization
-- [ ] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
+- [x] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
 - [ ] **Phase 9: PRO Features** - StoreKit 2, paywall, 3-endpoint limit
 - [ ] **Phase 10: Navigation Polish** - iPad/iPhone layouts, empty state
 - [ ] **Phase 11: Accessibility** - VoiceOver, Dynamic Type, Reduce Motion
@@ -163,9 +163,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 08-01-PLAN.md -- TDD YAMLConverter: minimal YAML-to-JSON converter for OpenAPI YAML subset (~15 tests)
-- [ ] 08-02-PLAN.md -- TDD OpenAPIParser + MockResponseGenerator: spec parsing, $ref resolution, mock response generation (~34 tests)
-- [ ] 08-03-PLAN.md -- OpenAPIPreviewSheet UI + EndpointListView Import OpenAPI menu integration
+- [x] 08-01-PLAN.md -- TDD YAMLConverter: minimal YAML-to-JSON converter for OpenAPI YAML subset (~15 tests)
+- [x] 08-02-PLAN.md -- TDD OpenAPIParser + MockResponseGenerator: spec parsing, $ref resolution, mock response generation (~34 tests)
+- [x] 08-03-PLAN.md -- OpenAPIPreviewSheet UI + EndpointListView Import OpenAPI menu integration
 
 ### Phase 9: PRO Features
 **Goal**: StoreKit 2 integration enforces 3-endpoint free tier and unlocks PRO features with $5.99 purchase
@@ -222,7 +222,7 @@ Plans:
 | 5. Response Templates + Delay | 3/3 | ✓ Complete | 2026-02-17 |
 | 6. Path Parameters + Wildcard Matching | 2/2 | ✓ Complete | 2026-02-17 |
 | 7. Import/Export + Collections | 3/3 | ✓ Complete | 2026-02-17 |
-| 8. OpenAPI Import | 0/3 | Not started | - |
+| 8. OpenAPI Import | 3/3 | ✓ Complete | 2026-02-17 |
 | 9. PRO Features | 0/TBD | Not started | - |
 | 10. Navigation Polish | 0/TBD | Not started | - |
 | 11. Accessibility | 0/TBD | Not started | - |
