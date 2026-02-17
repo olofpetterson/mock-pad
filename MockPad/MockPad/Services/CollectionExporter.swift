@@ -9,8 +9,30 @@ import Foundation
 
 enum CollectionExporter {
     static func export(endpoints: [MockEndpoint], collectionName: String?) throws -> Data {
-        // TODO: Implement in GREEN phase
-        Data()
+        let exportedEndpoints = endpoints.map { ep in
+            ExportedEndpoint(
+                path: ep.path,
+                httpMethod: ep.httpMethod,
+                responseStatusCode: ep.responseStatusCode,
+                responseBody: ep.responseBody,
+                responseHeaders: ep.responseHeaders,
+                isEnabled: ep.isEnabled,
+                responseDelayMs: ep.responseDelayMs
+            )
+        }
+
+        let export = MockPadExport(
+            format: "mockpad-collection",
+            version: 1,
+            exportedAt: Date(),
+            collectionName: collectionName,
+            endpoints: exportedEndpoints
+        )
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.dateEncodingStrategy = .iso8601
+        return try encoder.encode(export)
     }
 
     static func exportDocument(endpoints: [MockEndpoint], collectionName: String?) throws -> MockPadDocument {
