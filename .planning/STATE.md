@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-16)
 ## Current Position
 
 Phase: 10 of 11 (Navigation Polish)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-02-17 - Completed 10-02-PLAN.md (Localhost-Only Binding)
+Plan: 3 of 3 in current phase
+Status: Phase Complete
+Last activity: 2026-02-17 - Completed 10-03-PLAN.md (Adaptive Navigation Container)
 
-Progress: [█████████░] 90%
+Progress: [██████████] 95%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 26
+- Total plans completed: 27
 - Average duration: 2 min
-- Total execution time: 0.8 hours
+- Total execution time: 0.85 hours
 
 **By Phase:**
 
@@ -36,10 +36,10 @@ Progress: [█████████░] 90%
 | 07-import-export-collections | 3 | 6 min | 2 min |
 | 08-openapi-import | 3 | 8 min | 2.7 min |
 | 09-pro-features | 2 | 3 min | 1.5 min |
-| 10-navigation-polish | 2 | 4 min | 2 min |
+| 10-navigation-polish | 3 | 6 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 08-03 (2 min), 09-01 (1 min), 09-02 (2 min), 10-01 (2 min), 10-02 (2 min)
+- Last 5 plans: 09-01 (1 min), 09-02 (2 min), 10-01 (2 min), 10-02 (2 min), 10-03 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -152,6 +152,11 @@ Recent decisions affecting current work:
 - Plan 10-02: localhostOnly defaults to true (security-first: only localhost connections by default)
 - Plan 10-02: NWParameters.requiredLocalEndpoint binds to IPv4 loopback when localhostOnly is true
 - Plan 10-02: acceptLocalOnly toggled alongside requiredLocalEndpoint for defense-in-depth
+- Plan 10-03: horizontalSizeClass .regular triggers iPad NavigationSplitView, .compact triggers iPhone TabView
+- Plan 10-03: iPad settings presented as sheet from toolbar gear button (not a sidebar item)
+- Plan 10-03: iPad detail column wraps RequestLogListView in NavigationStack for push navigation
+- Plan 10-03: scenePhase and ProManager .task remain at ContentView root level above layout conditional
+- Plan 10-03: SidebarView uses List(selection:) with .tag(persistentModelID) for endpoint selection
 
 ### Pending Todos
 
@@ -164,5 +169,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 10-02-PLAN.md (Localhost-Only Binding)
-Resume file: .planning/phases/10-navigation-polish/10-02-SUMMARY.md
+Stopped at: Completed 10-03-PLAN.md (Adaptive Navigation Container) - Phase 10 complete
+Resume file: .planning/phases/10-navigation-polish/10-03-SUMMARY.md
