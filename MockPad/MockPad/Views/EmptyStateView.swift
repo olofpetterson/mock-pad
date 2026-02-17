@@ -10,13 +10,14 @@ import SwiftUI
 struct EmptyStateView: View {
     @Environment(EndpointStore.self) private var endpointStore
     @Environment(ServerStore.self) private var serverStore
+    @ScaledMetric(relativeTo: .largeTitle) private var emptyIconSize: CGFloat = 48
 
     var body: some View {
         VStack(spacing: MockPadMetrics.panelSpacing) {
             Spacer()
 
             Image(systemName: "antenna.radiowaves.left.and.right.slash")
-                .font(.system(size: 48))
+                .font(.system(size: emptyIconSize))
                 .foregroundStyle(MockPadColors.textDisabled)
 
             Text("No Endpoints")

@@ -13,6 +13,7 @@ struct RequestLogListView: View {
     @State private var activeMethodFilters: Set<String> = []
     @State private var activeStatusFilters: Set<String> = []
     @State private var searchText: String = ""
+    @ScaledMetric(relativeTo: .title) private var emptyIconSize: CGFloat = 40
 
     private var filteredLogs: [RequestLog] {
         logs.filter { log in
@@ -78,7 +79,7 @@ struct RequestLogListView: View {
             Spacer()
             if !serverStore.isRunning && logs.isEmpty {
                 Image(systemName: "server.rack")
-                    .font(.system(size: 40))
+                    .font(.system(size: emptyIconSize))
                     .foregroundColor(MockPadColors.textDisabled)
                     .padding(.bottom, 8)
                 Text("Start the server to begin logging requests.")
@@ -87,7 +88,7 @@ struct RequestLogListView: View {
                     .multilineTextAlignment(.center)
             } else if logs.isEmpty {
                 Image(systemName: "antenna.radiowaves.left.and.right")
-                    .font(.system(size: 40))
+                    .font(.system(size: emptyIconSize))
                     .foregroundColor(MockPadColors.textDisabled)
                     .padding(.bottom, 8)
                 Text("Waiting for requests...")
@@ -96,7 +97,7 @@ struct RequestLogListView: View {
                     .multilineTextAlignment(.center)
             } else {
                 Image(systemName: "line.3.horizontal.decrease.circle")
-                    .font(.system(size: 40))
+                    .font(.system(size: emptyIconSize))
                     .foregroundColor(MockPadColors.textDisabled)
                     .padding(.bottom, 8)
                 Text("No requests match your filters.")

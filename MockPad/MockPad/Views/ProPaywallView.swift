@@ -9,6 +9,7 @@ import StoreKit
 struct ProPaywallView: View {
     @Environment(ProManager.self) private var proManager
     @Environment(\.dismiss) private var dismiss
+    @ScaledMetric(relativeTo: .largeTitle) private var headerIconSize: CGFloat = 42
 
     private let features: [(icon: String, title: String)] = [
         ("infinity", "Unlimited Endpoints"),
@@ -30,7 +31,7 @@ struct ProPaywallView: View {
                                 .fill(MockPadColors.proGradientEnd)
                                 .frame(width: 80, height: 80)
                             Image(systemName: "lock.shield.fill")
-                                .font(.system(size: 42))
+                                .font(.system(size: headerIconSize))
                                 .foregroundStyle(MockPadColors.accent)
                         }
 
