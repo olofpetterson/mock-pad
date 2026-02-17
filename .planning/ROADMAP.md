@@ -6,7 +6,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** - SwiftData models, stores, project structure
+- [x] **Phase 1: Foundation** - SwiftData models, stores, project structure
 - [x] **Phase 2: Server Engine Core** - NWListener, HTTP parsing, basic routing
 - [x] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
 - [x] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
@@ -16,7 +16,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [x] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
 - [x] **Phase 9: PRO Features** - StoreKit 2, paywall, 3-endpoint limit
 - [x] **Phase 10: Navigation Polish** - iPad/iPhone layouts, empty state
-- [ ] **Phase 11: Accessibility** - VoiceOver, Dynamic Type, Reduce Motion
+- [x] **Phase 11: Accessibility** - VoiceOver, Dynamic Type, Reduce Motion
 
 ## Phase Details
 
@@ -212,9 +212,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 11-01-PLAN.md -- Theme foundations: HTTP method color luminance differentiation (ACCS-04) + @ScaledMetric Dynamic Type for fixed-size icons (ACCS-02)
-- [ ] 11-02-PLAN.md -- High-priority view VoiceOver labels + 44pt tap targets: EndpointRowView, ServerStatusBarView, filter chips, picker buttons, RequestLogRowView (ACCS-01, ACCS-05)
-- [ ] 11-03-PLAN.md -- Remaining view VoiceOver: detail views, editors, import sheets, ProPaywallView, SettingsView, empty states, Reduce Motion convention (ACCS-01, ACCS-03, ACCS-05)
+- [x] 11-01-PLAN.md -- Theme foundations: HTTP method color luminance differentiation (ACCS-04) + @ScaledMetric Dynamic Type for fixed-size icons (ACCS-02)
+- [x] 11-02-PLAN.md -- High-priority view VoiceOver labels + 44pt tap targets: EndpointRowView, ServerStatusBarView, filter chips, picker buttons, RequestLogRowView (ACCS-01, ACCS-05)
+- [x] 11-03-PLAN.md -- Remaining view VoiceOver: detail views, editors, import sheets, ProPaywallView, SettingsView, empty states, Reduce Motion convention (ACCS-01, ACCS-03, ACCS-05)
 
 ## Progress
 
@@ -230,7 +230,7 @@ Plans:
 | 8. OpenAPI Import | 3/3 | ✓ Complete | 2026-02-17 |
 | 9. PRO Features | 2/2 | ✓ Complete | 2026-02-17 |
 | 10. Navigation Polish | 3/3 | ✓ Complete | 2026-02-17 |
-| 11. Accessibility | 0/3 | Not started | - |
+| 11. Accessibility | 3/3 | ✓ Complete | 2026-02-17 |
 
 ---
 *Roadmap created: 2026-02-16*
