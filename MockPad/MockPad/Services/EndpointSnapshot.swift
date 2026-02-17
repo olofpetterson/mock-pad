@@ -19,4 +19,5 @@ struct EndpointSnapshot: Sendable {
     let responseBody: String
     let responseHeaders: [String: String]
     let isEnabled: Bool
+    let responseDelayMs: Int
 }

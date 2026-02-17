@@ -16,6 +16,7 @@ final class MockEndpoint {
     var responseBody: String
     var responseHeadersData: Data?
     var isEnabled: Bool
+    var responseDelayMs: Int
     var sortOrder: Int
     var createdAt: Date
 
@@ -36,6 +37,7 @@ final class MockEndpoint {
         responseBody: String = "{}",
         responseHeaders: [String: String] = ["Content-Type": "application/json"],
         isEnabled: Bool = true,
+        responseDelayMs: Int = 0,
         sortOrder: Int = 0
     ) {
         self.path = path
@@ -44,6 +46,7 @@ final class MockEndpoint {
         self.responseBody = responseBody
         self.responseHeadersData = try? JSONEncoder().encode(responseHeaders)
         self.isEnabled = isEnabled
+        self.responseDelayMs = responseDelayMs
         self.sortOrder = sortOrder
         self.createdAt = Date()
     }

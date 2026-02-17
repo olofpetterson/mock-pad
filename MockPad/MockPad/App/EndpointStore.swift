@@ -32,7 +32,8 @@ final class EndpointStore {
                 statusCode: endpoint.responseStatusCode,
                 responseBody: endpoint.responseBody,
                 responseHeaders: endpoint.responseHeaders,
-                isEnabled: endpoint.isEnabled
+                isEnabled: endpoint.isEnabled,
+                responseDelayMs: endpoint.responseDelayMs
             )
         }
     }

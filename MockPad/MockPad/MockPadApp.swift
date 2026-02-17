@@ -25,7 +25,7 @@ struct MockPadApp: App {
 
         do {
             let container = try ModelContainer(
-                for: MockEndpoint.self, RequestLog.self
+                for: MockEndpoint.self, RequestLog.self, ResponseTemplate.self
             )
             self.modelContainer = container
             let context = ModelContext(container)
