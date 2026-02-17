@@ -271,10 +271,11 @@ actor MockServerEngine {
         var delayMs: Int = 0
 
         switch matchResult {
-        case .matched(let path, _, let statusCode, let body, let headers, let matchedDelayMs):
+        case .matched(let path, _, let statusCode, let body, let headers, let matchedDelayMs, let pathParams):
             delayMs = matchedDelayMs
             responseStatusCode = statusCode
-            responseBody = body
+            let resolvedBody = PathParamReplacer.replace(in: body, with: pathParams)
+            responseBody = resolvedBody
             matchedEndpointPath = path
             var responseHeaders = headers
             responseHeaders["Content-Type"] = responseHeaders["Content-Type"] ?? "application/json"
@@ -282,7 +283,7 @@ actor MockServerEngine {
             responseData = HTTPResponseBuilder.build(
                 statusCode: statusCode,
                 headers: responseHeaders,
-                body: body,
+                body: resolvedBody,
                 corsEnabled: corsEnabled
             )
 
