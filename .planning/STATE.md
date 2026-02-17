@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 4 - Request Log (Complete)
+**Current focus:** Phase 5 - Response Templates & Delay
 
 ## Current Position
 
-Phase: 4 of 11 (Request Log) -- COMPLETE
-Plan: 3 of 3 in current phase
-Status: Phase Complete
-Last activity: 2026-02-16 - Completed 04-03-PLAN.md (Request Detail View)
+Phase: 5 of 11 (Response Templates & Delay)
+Plan: 1 of 3 in current phase
+Status: In Progress
+Last activity: 2026-02-17 - Completed 05-01-PLAN.md (Response Templates & Delay Data Layer)
 
-Progress: [████░░░░░░] 39%
+Progress: [████░░░░░░] 43%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: 2 min
-- Total execution time: 0.36 hours
+- Total execution time: 0.40 hours
 
 **By Phase:**
 
@@ -31,9 +31,10 @@ Progress: [████░░░░░░] 39%
 | 02-server-engine-core | 3 | 7 min | 2.3 min |
 | 03-endpoint-editor-ui | 3 | 6 min | 2 min |
 | 04-request-log | 3 | 5 min | 1.7 min |
+| 05-response-templates-delay | 1 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (2 min), 03-03 (2 min), 04-01 (3 min), 04-02 (1 min), 04-03 (1 min)
+- Last 5 plans: 03-03 (2 min), 04-01 (3 min), 04-02 (1 min), 04-03 (1 min), 05-01 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - Plan 04-02: Filter AND logic: empty filter set means 'show all' for that category
 - Plan 04-03: DisclosureGroup with @State expanded booleans for independent section collapse control
 - Plan 04-03: Button label swaps text and icon on copy for inline 'Copied!' feedback (no overlay/toast needed)
+- Plan 05-01: responseDelayMs default 0 ensures lightweight migration safety for existing MockEndpoint records
+- Plan 05-01: BuiltInTemplates uses caseless enum pattern (matches HTTPMethod, EndpointMatcher convention)
+- Plan 05-01: JSON bodies in templates use sorted keys with 2-space indentation matching JSONSerialization convention
 
 ### Pending Todos
 
@@ -98,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-16
-Stopped at: Completed 04-03-PLAN.md (Request Detail View) -- Phase 04 complete
-Resume file: .planning/phases/04-request-log/04-03-SUMMARY.md
+Last session: 2026-02-17
+Stopped at: Completed 05-01-PLAN.md (Response Templates & Delay Data Layer)
+Resume file: .planning/phases/05-response-templates-delay/05-01-SUMMARY.md
