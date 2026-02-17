@@ -209,10 +209,12 @@ Plans:
   3. All animations respect Reduce Motion accessibility preference
   4. HTTP method badges use distinct colors with different luminance for color blindness accessibility
   5. All tap targets meet 44pt minimum size
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD
+- [ ] 11-01-PLAN.md -- Theme foundations: HTTP method color luminance differentiation (ACCS-04) + @ScaledMetric Dynamic Type for fixed-size icons (ACCS-02)
+- [ ] 11-02-PLAN.md -- High-priority view VoiceOver labels + 44pt tap targets: EndpointRowView, ServerStatusBarView, filter chips, picker buttons, RequestLogRowView (ACCS-01, ACCS-05)
+- [ ] 11-03-PLAN.md -- Remaining view VoiceOver: detail views, editors, import sheets, ProPaywallView, SettingsView, empty states, Reduce Motion convention (ACCS-01, ACCS-03, ACCS-05)
 
 ## Progress
 
@@ -228,7 +230,7 @@ Plans:
 | 8. OpenAPI Import | 3/3 | ✓ Complete | 2026-02-17 |
 | 9. PRO Features | 2/2 | ✓ Complete | 2026-02-17 |
 | 10. Navigation Polish | 3/3 | ✓ Complete | 2026-02-17 |
-| 11. Accessibility | 0/TBD | Not started | - |
+| 11. Accessibility | 0/3 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-16*
