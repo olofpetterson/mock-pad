@@ -188,8 +188,8 @@ actor MockServerEngine {
 
     // MARK: - Request Processing
 
-    /// Process received data: parse, match, build response, send, log, close.
-    private func handleReceivedData(data: Data?, connection: NWConnection, id: ObjectIdentifier) {
+    /// Process received data: parse, match, build response, apply delay, send, log, close.
+    private func handleReceivedData(data: Data?, connection: NWConnection, id: ObjectIdentifier) async {
         let startTime = CFAbsoluteTimeGetCurrent()
 
         // Guard: data must exist and be non-empty
@@ -251,7 +251,8 @@ actor MockServerEngine {
              statusCode: snapshot.statusCode,
              responseBody: snapshot.responseBody,
              responseHeaders: snapshot.responseHeaders,
-             isEnabled: snapshot.isEnabled)
+             isEnabled: snapshot.isEnabled,
+             responseDelayMs: snapshot.responseDelayMs)
         }
 
         // Match request to endpoint
@@ -267,9 +268,11 @@ actor MockServerEngine {
         let responseBody: String?
         let logResponseHeaders: [String: String]
         let matchedEndpointPath: String?
+        var delayMs: Int = 0
 
         switch matchResult {
-        case .matched(let path, _, let statusCode, let body, let headers):
+        case .matched(let path, _, let statusCode, let body, let headers, let matchedDelayMs):
+            delayMs = matchedDelayMs
             responseStatusCode = statusCode
             responseBody = body
             matchedEndpointPath = path
@@ -315,7 +318,13 @@ actor MockServerEngine {
             )
         }
 
-        // Calculate response time and log
+        // Apply configured response delay for matched endpoints only.
+        // Non-blocking: actor reentrancy allows other connections to proceed during sleep.
+        if delayMs > 0 {
+            try? await Task.sleep(for: .milliseconds(delayMs))
+        }
+
+        // Calculate response time (includes delay -- correct per success criteria)
         let responseTimeMs = (CFAbsoluteTimeGetCurrent() - startTime) * 1000
         let logData = RequestLogData(
             timestamp: Date(),
