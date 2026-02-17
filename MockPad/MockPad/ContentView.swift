@@ -11,6 +11,7 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(ServerStore.self) private var serverStore
     @Environment(EndpointStore.self) private var endpointStore
+    @Environment(ProManager.self) private var proManager
 
     var body: some View {
         NavigationStack {
@@ -40,6 +41,10 @@ struct ContentView: View {
             default:
                 break
             }
+        }
+        .task {
+            await proManager.loadProduct()
+            await proManager.checkEntitlements()
         }
     }
 }

@@ -1,0 +1,28 @@
+{
+  "identifier" : "com.olof.petterson.MockPad.storekit",
+  "type" : "com.apple.product-type.storekit",
+  "version" : 1,
+  "products" : [
+    {
+      "displayPrice" : "5.99",
+      "familyShareable" : false,
+      "internalID" : "1",
+      "localizations" : [
+        {
+          "description" : "Unlock unlimited endpoints, OpenAPI import, custom templates, collections, response delay, and export/share.",
+          "displayName" : "MockPad PRO",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.olof.petterson.MockPad.pro",
+      "referenceName" : "MockPad PRO",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : []
+  }
+}
