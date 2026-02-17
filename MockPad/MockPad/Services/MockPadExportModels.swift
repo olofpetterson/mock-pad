@@ -39,11 +39,8 @@ struct MockPadDocument: FileDocument {
 
     let data: Data
 
-    init(export: MockPadExport) throws {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        encoder.dateEncodingStrategy = .iso8601
-        self.data = try encoder.encode(export)
+    init(data: Data) {
+        self.data = data
     }
 
     init(configuration: ReadConfiguration) throws {

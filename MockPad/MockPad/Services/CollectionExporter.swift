@@ -37,9 +37,6 @@ enum CollectionExporter {
 
     static func exportDocument(endpoints: [MockEndpoint], collectionName: String?) throws -> MockPadDocument {
         let data = try export(endpoints: endpoints, collectionName: collectionName)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let export = try decoder.decode(MockPadExport.self, from: data)
-        return try MockPadDocument(export: export)
+        return MockPadDocument(data: data)
     }
 }

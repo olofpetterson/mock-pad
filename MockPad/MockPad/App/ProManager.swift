@@ -12,7 +12,7 @@ import StoreKit
 final class ProManager {
     static let shared = ProManager()
     static let freeEndpointLimit = 3
-    static let productID = "com.olof.petterson.MockPad.pro"
+    static let productID = "com.olof.petterson.mockpad.pro"
 
     private(set) var isPro: Bool
     private(set) var product: Product?

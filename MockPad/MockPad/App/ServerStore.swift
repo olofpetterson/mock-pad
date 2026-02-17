@@ -55,9 +55,10 @@ final class ServerStore {
             let newEngine = MockServerEngine()
 
             // Set up log callback -- captures endpointStore for SwiftData persistence
-            await newEngine.setOnRequestLogged { [weak endpointStore] logData in
+            let store = endpointStore
+            await newEngine.setOnRequestLogged { [weak store] logData in
+                guard let store else { return }
                 Task { @MainActor in
-                    guard let endpointStore else { return }
                     let log = RequestLog(
                         timestamp: logData.timestamp,
                         method: logData.method,
@@ -71,7 +72,7 @@ final class ServerStore {
                         matchedEndpointPath: logData.matchedEndpointPath,
                         responseTimeMs: logData.responseTimeMs
                     )
-                    endpointStore.addLogEntry(log)
+                    store.addLogEntry(log)
                 }
             }
 
