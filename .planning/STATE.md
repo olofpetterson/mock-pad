@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-16)
 ## Current Position
 
 Phase: 8 of 11 (OpenAPI Import)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In Progress
-Last activity: 2026-02-17 - Completed 08-01-PLAN.md (YAMLConverter)
+Last activity: 2026-02-17 - Completed 08-02-PLAN.md (OpenAPIParser + MockResponseGenerator)
 
-Progress: [████████░░] 73%
+Progress: [████████░░] 76%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
+- Total plans completed: 21
 - Average duration: 2 min
-- Total execution time: 0.65 hours
+- Total execution time: 0.7 hours
 
 **By Phase:**
 
@@ -34,10 +34,10 @@ Progress: [████████░░] 73%
 | 05-response-templates-delay | 3 | 5 min | 1.7 min |
 | 06-path-parameters-wildcard-matching | 2 | 3 min | 1.5 min |
 | 07-import-export-collections | 3 | 6 min | 2 min |
-| 08-openapi-import | 1 | 3 min | 3 min |
+| 08-openapi-import | 2 | 6 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-02 (1 min), 07-01 (3 min), 07-02 (1 min), 07-03 (2 min), 08-01 (3 min)
+- Last 5 plans: 07-01 (3 min), 07-02 (1 min), 07-03 (2 min), 08-01 (3 min), 08-02 (3 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -124,6 +124,12 @@ Recent decisions affecting current work:
 - Plan 08-01: Comment stripping requires space before # to avoid false positives in URLs
 - Plan 08-01: Multiline blocks (| and >) collected by indent level relative to parent
 - Plan 08-01: ConversionError.invalidYAML for empty input; NSNull for empty YAML values
+- Plan 08-02: Dictionary tree ([String: Any]) for OpenAPI parsing instead of Codable DTOs -- handles $ref, optional fields, extension keys
+- Plan 08-02: MockResponseGenerator.resolveRef is static (not private) to share $ref resolution with OpenAPIParser for response object refs
+- Plan 08-02: Response status code priority: 200 > 201 > 204 > first 2xx > default matches real-world OpenAPI conventions
+- Plan 08-02: allOf merges properties from all sub-schemas; oneOf/anyOf uses first option only
+- Plan 08-02: Path parameter conversion via Swift Regex for {param} -> :param transformation
+- Plan 08-02: Global warnings for webhooks, securitySchemes, schema composition; per-endpoint warnings for callbacks and security
 
 ### Pending Todos
 
@@ -136,5 +142,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 08-01-PLAN.md (YAMLConverter)
-Resume file: .planning/phases/08-openapi-import/08-01-SUMMARY.md
+Stopped at: Completed 08-02-PLAN.md (OpenAPIParser + MockResponseGenerator)
+Resume file: .planning/phases/08-openapi-import/08-02-SUMMARY.md
