@@ -14,12 +14,12 @@ struct HTTPMethodPickerView: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: MockPadMetrics.paddingSmall) {
             ForEach(methods, id: \.self) { method in
+                let methodColor = MockPadColors.methodColor(for: method)
+                let isSelected = selectedMethod == method
+
                 Button {
                     selectedMethod = method
                 } label: {
-                    let methodColor = MockPadColors.methodColor(for: method)
-                    let isSelected = selectedMethod == method
-
                     Text(method)
                         .font(MockPadTypography.methodBadge)
                         .textCase(.uppercase)
@@ -28,7 +28,7 @@ struct HTTPMethodPickerView: View {
                                 ? MockPadColors.background
                                 : methodColor
                         )
-                        .frame(maxWidth: .infinity, minHeight: 36)
+                        .frame(maxWidth: .infinity, minHeight: MockPadMetrics.minTouchHeight)
                         .background(
                             isSelected
                                 ? methodColor
@@ -37,6 +37,9 @@ struct HTTPMethodPickerView: View {
                         .cornerRadius(6)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("\(method) method")
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
+                .accessibilityRemoveTraits(isSelected ? [] : .isSelected)
             }
         }
     }

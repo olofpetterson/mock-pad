@@ -28,7 +28,7 @@ struct StatusCodePickerView: View {
                                     ? MockPadColors.statusCodeColor(code: code)
                                     : MockPadColors.textMuted
                             )
-                            .frame(minWidth: 56, minHeight: 36)
+                            .frame(minWidth: 56, minHeight: MockPadMetrics.minTouchHeight)
                             .background(
                                 selectedCode == code
                                     ? MockPadColors.accent.opacity(0.15)
@@ -46,6 +46,9 @@ struct StatusCodePickerView: View {
                             )
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Status \(code)")
+                    .accessibilityAddTraits(selectedCode == code ? .isSelected : [])
+                    .accessibilityRemoveTraits(selectedCode == code ? [] : .isSelected)
                 }
 
                 // Custom code button
@@ -64,7 +67,7 @@ struct StatusCodePickerView: View {
                                 ? MockPadColors.accent
                                 : MockPadColors.textMuted
                         )
-                        .frame(minWidth: 56, minHeight: 36)
+                        .frame(minWidth: 56, minHeight: MockPadMetrics.minTouchHeight)
                         .background(
                             showCustom
                                 ? MockPadColors.accent.opacity(0.15)
@@ -82,6 +85,9 @@ struct StatusCodePickerView: View {
                         )
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Custom status code")
+                .accessibilityAddTraits(showCustom ? .isSelected : [])
+                .accessibilityRemoveTraits(showCustom ? [] : .isSelected)
             }
 
             if showCustom {

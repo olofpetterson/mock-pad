@@ -45,6 +45,8 @@ struct CollectionFilterChipsView: View {
                     Color.clear
                         .contentShape(Rectangle())
                         .onTapGesture { showPaywall = true }
+                        .accessibilityLabel("Collections require PRO")
+                        .accessibilityHint("Double tap to view PRO upgrade")
                 }
             }
             .sheet(isPresented: $showPaywall) {
@@ -63,7 +65,7 @@ struct CollectionFilterChipsView: View {
                 .font(MockPadTypography.badge)
                 .foregroundColor(isActive ? MockPadColors.background : MockPadColors.accent)
                 .padding(.horizontal, 12)
-                .padding(.vertical, 6)
+                .frame(minHeight: MockPadMetrics.minTouchHeight)
                 .background(isActive ? MockPadColors.accent : MockPadColors.panel2)
                 .cornerRadius(MockPadMetrics.cornerRadiusSmall)
                 .overlay(
@@ -72,5 +74,8 @@ struct CollectionFilterChipsView: View {
                 )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("\(label) collection filter")
+        .accessibilityAddTraits(isActive ? .isSelected : [])
+        .accessibilityRemoveTraits(isActive ? [] : .isSelected)
     }
 }

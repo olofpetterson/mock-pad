@@ -69,7 +69,7 @@ struct LogFilterChipsView: View {
                 .font(MockPadTypography.badge)
                 .foregroundColor(isActive ? MockPadColors.background : color)
                 .padding(.horizontal, 12)
-                .padding(.vertical, 6)
+                .frame(minHeight: MockPadMetrics.minTouchHeight)
                 .background(isActive ? color : MockPadColors.panel2)
                 .cornerRadius(MockPadMetrics.cornerRadiusSmall)
                 .overlay(
@@ -78,5 +78,8 @@ struct LogFilterChipsView: View {
                 )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("\(label) filter")
+        .accessibilityAddTraits(isActive ? .isSelected : [])
+        .accessibilityRemoveTraits(isActive ? [] : .isSelected)
     }
 }
