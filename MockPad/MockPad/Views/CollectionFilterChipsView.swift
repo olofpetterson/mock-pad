@@ -9,6 +9,7 @@ struct CollectionFilterChipsView: View {
     @Binding var selectedCollection: String?
     @Environment(EndpointStore.self) private var endpointStore
     @Environment(ProManager.self) private var proManager
+    @State private var showPaywall = false
 
     var body: some View {
         let names = endpointStore.collectionNames
@@ -39,6 +40,16 @@ struct CollectionFilterChipsView: View {
             .padding(.horizontal, MockPadMetrics.panelPadding)
             .opacity(proManager.isPro ? 1 : 0.4)
             .allowsHitTesting(proManager.isPro)
+            .overlay {
+                if !proManager.isPro {
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .onTapGesture { showPaywall = true }
+                }
+            }
+            .sheet(isPresented: $showPaywall) {
+                ProPaywallView()
+            }
         }
     }
 

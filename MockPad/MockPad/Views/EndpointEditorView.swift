@@ -13,6 +13,7 @@ struct EndpointEditorView: View {
     @State private var syncTask: Task<Void, Never>?
     @State private var newCollectionName = ""
     @State private var showNewCollectionField = false
+    @State private var showPaywall = false
 
     var body: some View {
         Form {
@@ -80,6 +81,13 @@ struct EndpointEditorView: View {
                 }
                 .opacity(proManager.isPro ? 1 : 0.4)
                 .allowsHitTesting(proManager.isPro)
+                .overlay {
+                    if !proManager.isPro {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture { showPaywall = true }
+                    }
+                }
             } header: {
                 Text("> COLLECTION_")
                     .blueprintLabelStyle()
@@ -125,6 +133,13 @@ struct EndpointEditorView: View {
                 }
                 .opacity(proManager.isPro ? 1 : 0.4)
                 .allowsHitTesting(proManager.isPro)
+                .overlay {
+                    if !proManager.isPro {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture { showPaywall = true }
+                    }
+                }
             } header: {
                 Text("> RESPONSE DELAY_")
                     .blueprintLabelStyle()
@@ -147,6 +162,9 @@ struct EndpointEditorView: View {
         }
         .scrollContentBackground(.hidden)
         .background(MockPadColors.background)
+        .sheet(isPresented: $showPaywall) {
+            ProPaywallView()
+        }
         .navigationTitle(endpoint.path)
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: endpoint.path) { _, _ in

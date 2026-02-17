@@ -19,6 +19,7 @@ struct TemplatePickerView: View {
     private var customTemplates: [ResponseTemplate]
 
     @State private var showingSaveSheet = false
+    @State private var showPaywall = false
 
     var body: some View {
         Section {
@@ -89,12 +90,16 @@ struct TemplatePickerView: View {
                     }
                     .listRowBackground(MockPadColors.panel)
                 } else {
-                    HStack {
-                        Image(systemName: "lock.fill")
-                            .foregroundStyle(MockPadColors.accent)
-                        Text("PRO")
-                            .font(MockPadTypography.proLabel)
-                            .foregroundStyle(MockPadColors.accent)
+                    Button {
+                        showPaywall = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "lock.fill")
+                                .foregroundStyle(MockPadColors.accent)
+                            Text("PRO")
+                                .font(MockPadTypography.proLabel)
+                                .foregroundStyle(MockPadColors.accent)
+                        }
                     }
                     .listRowBackground(MockPadColors.panel)
                 }
@@ -107,6 +112,9 @@ struct TemplatePickerView: View {
         EmptyView()
             .sheet(isPresented: $showingSaveSheet) {
                 SaveTemplateSheet(endpoint: endpoint)
+            }
+            .sheet(isPresented: $showPaywall) {
+                ProPaywallView()
             }
     }
 

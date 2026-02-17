@@ -11,7 +11,7 @@ struct EndpointListView: View {
     @Environment(ServerStore.self) private var serverStore
     @Environment(ProManager.self) private var proManager
     @State private var showAddSheet = false
-    @State private var showProAlert = false
+    @State private var showPaywall = false
     @State private var syncTask: Task<Void, Never>?
     @State private var selectedCollection: String?
     @State private var showExporter = false
@@ -21,11 +21,9 @@ struct EndpointListView: View {
     @State private var showImportPreview = false
     @State private var importError: String?
     @State private var showImportError = false
-    @State private var showExportProAlert = false
     @State private var showOpenAPIImporter = false
     @State private var pendingOpenAPIImport: OpenAPIParser.ParseResult?
     @State private var showOpenAPIPreview = false
-    @State private var showOpenAPIProAlert = false
 
     private var filteredEndpoints: [MockEndpoint] {
         selectedCollection == nil
@@ -90,7 +88,7 @@ struct EndpointListView: View {
                 Menu {
                     Button("Export to File", systemImage: "square.and.arrow.down") {
                         guard proManager.isPro else {
-                            showExportProAlert = true
+                            showPaywall = true
                             return
                         }
                         do {
@@ -113,7 +111,7 @@ struct EndpointListView: View {
                         )
                     } else {
                         Button("Share Collection", systemImage: "square.and.arrow.up.on.square") {
-                            showExportProAlert = true
+                            showPaywall = true
                         }
                         .disabled(!proManager.isPro || filteredEndpoints.isEmpty)
                     }
@@ -128,7 +126,7 @@ struct EndpointListView: View {
 
                     Button("Import OpenAPI Spec", systemImage: "doc.badge.gearshape") {
                         guard proManager.isPro else {
-                            showOpenAPIProAlert = true
+                            showPaywall = true
                             return
                         }
                         showOpenAPIImporter = true
@@ -142,7 +140,7 @@ struct EndpointListView: View {
                     if proManager.canAddEndpoint(currentCount: endpointStore.endpointCount) {
                         showAddSheet = true
                     } else {
-                        showProAlert = true
+                        showPaywall = true
                     }
                 } label: {
                     Image(systemName: "plus")
@@ -220,25 +218,13 @@ struct EndpointListView: View {
                 OpenAPIPreviewSheet(parseResult: parseResult)
             }
         }
-        .alert("PRO Required", isPresented: $showProAlert) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("Upgrade to PRO to add more than \(ProManager.freeEndpointLimit) endpoints.")
-        }
-        .alert("PRO Required", isPresented: $showExportProAlert) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("Upgrade to PRO to export endpoint collections.")
+        .sheet(isPresented: $showPaywall) {
+            ProPaywallView()
         }
         .alert("Import Error", isPresented: $showImportError) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(importError ?? "Unknown error")
-        }
-        .alert("PRO Required", isPresented: $showOpenAPIProAlert) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("Upgrade to PRO to import OpenAPI specifications.")
         }
     }
 
