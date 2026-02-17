@@ -12,42 +12,55 @@ struct EndpointListView: View {
     @State private var showAddSheet = false
     @State private var showProAlert = false
     @State private var syncTask: Task<Void, Never>?
+    @State private var selectedCollection: String?
+
+    private var filteredEndpoints: [MockEndpoint] {
+        selectedCollection == nil
+            ? endpointStore.endpoints
+            : endpointStore.endpoints.filter { $0.collectionName == selectedCollection }
+    }
 
     var body: some View {
-        List {
-            ForEach(endpointStore.endpoints) { endpoint in
-                NavigationLink {
-                    EndpointEditorView(endpoint: endpoint)
-                } label: {
-                    EndpointRowView(endpoint: endpoint) { newValue in
-                        endpoint.isEnabled = newValue
-                        endpointStore.updateEndpoint()
-                        debouncedSyncEngine()
-                    }
-                }
-                .swipeActions(edge: .leading) {
-                    Button {
-                        duplicateEndpoint(endpoint)
+        VStack(spacing: 0) {
+            CollectionFilterChipsView(selectedCollection: $selectedCollection)
+                .padding(.vertical, MockPadMetrics.paddingSmall)
+
+            List {
+                ForEach(filteredEndpoints) { endpoint in
+                    NavigationLink {
+                        EndpointEditorView(endpoint: endpoint)
                     } label: {
-                        Label("Duplicate", systemImage: "square.on.square")
+                        EndpointRowView(endpoint: endpoint) { newValue in
+                            endpoint.isEnabled = newValue
+                            endpointStore.updateEndpoint()
+                            debouncedSyncEngine()
+                        }
                     }
-                    .tint(MockPadColors.accent)
-                }
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                    Button(role: .destructive) {
-                        endpointStore.deleteEndpoint(endpoint)
-                        debouncedSyncEngine()
-                    } label: {
-                        Label("Delete", systemImage: "trash")
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            duplicateEndpoint(endpoint)
+                        } label: {
+                            Label("Duplicate", systemImage: "square.on.square")
+                        }
+                        .tint(MockPadColors.accent)
                     }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button(role: .destructive) {
+                            endpointStore.deleteEndpoint(endpoint)
+                            debouncedSyncEngine()
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                    .listRowBackground(MockPadColors.background)
+                    .listRowSeparator(.hidden)
                 }
-                .listRowBackground(MockPadColors.background)
-                .listRowSeparator(.hidden)
+                .onMove(perform: moveEndpoints)
             }
-            .onMove(perform: moveEndpoints)
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(MockPadColors.background)
         }
-        .listStyle(.plain)
-        .scrollContentBackground(.hidden)
         .background(MockPadColors.background)
         .navigationTitle("Endpoints")
         .toolbar {
@@ -85,7 +98,8 @@ struct EndpointListView: View {
             responseBody: source.responseBody,
             responseHeaders: source.responseHeaders,
             isEnabled: source.isEnabled,
-            sortOrder: maxSortOrder + 1
+            sortOrder: maxSortOrder + 1,
+            collectionName: source.collectionName
         )
         endpointStore.addEndpoint(copy)
         debouncedSyncEngine()
