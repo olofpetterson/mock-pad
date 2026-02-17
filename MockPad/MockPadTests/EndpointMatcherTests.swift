@@ -27,14 +27,14 @@ struct EndpointMatcherTests {
          isEnabled: isEnabled, responseDelayMs: responseDelayMs)
     }
 
-    // MARK: - Exact Match
+    // MARK: - Exact Match (existing, updated for pathParams arity)
 
     @Test func exactMatch_returnsMatched() {
         let endpoints = [
             endpoint(path: "/api/users", method: "GET", statusCode: 200, responseBody: "[{\"id\":1}]", responseHeaders: ["Content-Type": "application/json"])
         ]
         let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
-        guard case let .matched(path, method, statusCode, responseBody, responseHeaders, _) = result else {
+        guard case let .matched(path, method, statusCode, responseBody, responseHeaders, _, pathParams) = result else {
             Issue.record("Expected .matched but got \(result)")
             return
         }
@@ -43,6 +43,7 @@ struct EndpointMatcherTests {
         #expect(statusCode == 200)
         #expect(responseBody == "[{\"id\":1}]")
         #expect(responseHeaders["Content-Type"] == "application/json")
+        #expect(pathParams.isEmpty)
     }
 
     // MARK: - Method Not Allowed
@@ -144,10 +145,183 @@ struct EndpointMatcherTests {
             endpoint(path: "/api/users", method: "GET", statusCode: 201)
         ]
         let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
-        guard case let .matched(_, _, statusCode, _, _, _) = result else {
+        guard case let .matched(_, _, statusCode, _, _, _, _) = result else {
             Issue.record("Expected .matched but got \(result)")
             return
         }
         #expect(statusCode == 200)
+    }
+
+    // MARK: - Path Parameter Tests (NEW)
+
+    @Test func pathParam_singleParam_extractsValue() {
+        let endpoints = [endpoint(path: "/api/users/:id", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42", endpoints: endpoints)
+        guard case let .matched(_, _, _, _, _, _, pathParams) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(pathParams["id"] == "42")
+    }
+
+    @Test func pathParam_multipleParams_extractsAll() {
+        let endpoints = [endpoint(path: "/api/users/:userId/posts/:postId", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42/posts/7", endpoints: endpoints)
+        guard case let .matched(_, _, _, _, _, _, pathParams) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(pathParams["userId"] == "42")
+        #expect(pathParams["postId"] == "7")
+    }
+
+    @Test func pathParam_segmentCountMismatch_returnsNotFound() {
+        let endpoints = [endpoint(path: "/api/users/:id", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
+        guard case .notFound = result else {
+            Issue.record("Expected .notFound but got \(result)")
+            return
+        }
+    }
+
+    @Test func pathParam_tooManySegments_returnsNotFound() {
+        let endpoints = [endpoint(path: "/api/users", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42", endpoints: endpoints)
+        guard case .notFound = result else {
+            Issue.record("Expected .notFound but got \(result)")
+            return
+        }
+    }
+
+    @Test func pathParam_caseInsensitiveLiteralSegments() {
+        let endpoints = [endpoint(path: "/API/Users/:id", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42", endpoints: endpoints)
+        guard case let .matched(_, _, _, _, _, _, pathParams) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(pathParams["id"] == "42")
+    }
+
+    @Test func pathParam_disabledEndpoint_ignored() {
+        let endpoints = [endpoint(path: "/api/users/:id", method: "GET", isEnabled: false)]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42", endpoints: endpoints)
+        guard case .notFound = result else {
+            Issue.record("Expected .notFound but got \(result)")
+            return
+        }
+    }
+
+    @Test func pathParam_methodNotAllowed_with405() {
+        let endpoints = [endpoint(path: "/api/users/:id", method: "GET")]
+        let result = EndpointMatcher.match(method: "DELETE", path: "/api/users/42", endpoints: endpoints)
+        guard case let .methodNotAllowed(allowedMethods) = result else {
+            Issue.record("Expected .methodNotAllowed but got \(result)")
+            return
+        }
+        #expect(allowedMethods.contains("GET"))
+    }
+
+    // MARK: - Wildcard Tests (NEW)
+
+    @Test func wildcard_matchesSubPath() {
+        let endpoints = [endpoint(path: "/api/*", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42/posts", endpoints: endpoints)
+        guard case .matched = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+    }
+
+    @Test func wildcard_matchesZeroSubSegments() {
+        let endpoints = [endpoint(path: "/api/*", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api", endpoints: endpoints)
+        guard case .matched = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+    }
+
+    @Test func wildcard_paramPlusWildcard() {
+        let endpoints = [endpoint(path: "/api/:version/*", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/v2/users", endpoints: endpoints)
+        guard case let .matched(_, _, _, _, _, _, pathParams) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(pathParams["version"] == "v2")
+    }
+
+    @Test func wildcard_noMatchDifferentPrefix() {
+        let endpoints = [endpoint(path: "/api/*", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/other/users", endpoints: endpoints)
+        guard case .notFound = result else {
+            Issue.record("Expected .notFound but got \(result)")
+            return
+        }
+    }
+
+    // MARK: - Priority Tests (NEW)
+
+    @Test func priority_exactOverParam() {
+        let endpoints = [
+            endpoint(path: "/api/users/:id", method: "GET", statusCode: 200),
+            endpoint(path: "/api/users/me", method: "GET", statusCode: 201)
+        ]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/me", endpoints: endpoints)
+        guard case let .matched(_, _, statusCode, _, _, _, _) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(statusCode == 201)
+    }
+
+    @Test func priority_paramOverWildcard() {
+        let endpoints = [
+            endpoint(path: "/api/*", method: "GET", statusCode: 200),
+            endpoint(path: "/api/users/:id", method: "GET", statusCode: 201)
+        ]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42", endpoints: endpoints)
+        guard case let .matched(_, _, statusCode, _, _, _, _) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(statusCode == 201)
+    }
+
+    @Test func priority_exactOverWildcard() {
+        let endpoints = [
+            endpoint(path: "/api/*", method: "GET", statusCode: 200),
+            endpoint(path: "/api/users", method: "GET", statusCode: 201)
+        ]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
+        guard case let .matched(_, _, statusCode, _, _, _, _) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(statusCode == 201)
+    }
+
+    @Test func priority_firstMatchWinsWithinSameSpecificity() {
+        let endpoints = [
+            endpoint(path: "/api/users/:id", method: "GET", statusCode: 200),
+            endpoint(path: "/api/users/:name", method: "GET", statusCode: 201)
+        ]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users/42", endpoints: endpoints)
+        guard case let .matched(_, _, statusCode, _, _, _, _) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(statusCode == 200)
+    }
+
+    @Test func exactMatch_returnsEmptyPathParams() {
+        let endpoints = [endpoint(path: "/api/users", method: "GET")]
+        let result = EndpointMatcher.match(method: "GET", path: "/api/users", endpoints: endpoints)
+        guard case let .matched(_, _, _, _, _, _, pathParams) = result else {
+            Issue.record("Expected .matched but got \(result)")
+            return
+        }
+        #expect(pathParams.isEmpty)
     }
 }
