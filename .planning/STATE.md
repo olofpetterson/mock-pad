@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 7 - Import/Export + Collections
+**Current focus:** Phase 8 - OpenAPI Import
 
 ## Current Position
 
-Phase: 7 of 11 (Import/Export + Collections)
-Plan: 3 of 3 in current phase
-Status: Phase Complete
-Last activity: 2026-02-17 - Completed 07-03-PLAN.md (Import/Export/Share UI)
+Phase: 8 of 11 (OpenAPI Import)
+Plan: 1 of 3 in current phase
+Status: In Progress
+Last activity: 2026-02-17 - Completed 08-01-PLAN.md (YAMLConverter)
 
-Progress: [███████░░░] 70%
+Progress: [████████░░] 73%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19
+- Total plans completed: 20
 - Average duration: 2 min
-- Total execution time: 0.60 hours
+- Total execution time: 0.65 hours
 
 **By Phase:**
 
@@ -34,9 +34,10 @@ Progress: [███████░░░] 70%
 | 05-response-templates-delay | 3 | 5 min | 1.7 min |
 | 06-path-parameters-wildcard-matching | 2 | 3 min | 1.5 min |
 | 07-import-export-collections | 3 | 6 min | 2 min |
+| 08-openapi-import | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-01 (2 min), 06-02 (1 min), 07-01 (3 min), 07-02 (1 min), 07-03 (2 min)
+- Last 5 plans: 06-02 (1 min), 07-01 (3 min), 07-02 (1 min), 07-03 (2 min), 08-01 (3 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -118,6 +119,11 @@ Recent decisions affecting current work:
 - Plan 07-03: Menu with Divider separates export/share (PRO) from import (free) actions
 - Plan 07-03: Import preview sheet onDismiss triggers engine sync for imported endpoints
 - Plan 07-03: ExportedEndpoint uniqueID combines httpMethod + path for ForEach identity
+- Plan 08-01: Line-by-line parser with indentation tracking (not tokenizer/AST) for minimal YAML subset
+- Plan 08-01: Flow collections ([a,b] and {a:b}) delegated to JSONSerialization instead of hand-rolled parser
+- Plan 08-01: Comment stripping requires space before # to avoid false positives in URLs
+- Plan 08-01: Multiline blocks (| and >) collected by indent level relative to parent
+- Plan 08-01: ConversionError.invalidYAML for empty input; NSNull for empty YAML values
 
 ### Pending Todos
 
@@ -130,5 +136,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 07-03-PLAN.md (Import/Export/Share UI) - Phase 7 complete
-Resume file: .planning/phases/07-import-export-collections/07-03-SUMMARY.md
+Stopped at: Completed 08-01-PLAN.md (YAMLConverter)
+Resume file: .planning/phases/08-openapi-import/08-01-SUMMARY.md
