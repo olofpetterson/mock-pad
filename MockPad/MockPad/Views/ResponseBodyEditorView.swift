@@ -79,6 +79,8 @@ struct ResponseBodyEditorView: View {
             }
             .font(.system(.caption, design: .monospaced))
             .foregroundColor(MockPadColors.status2xx)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("JSON validation: valid")
 
         case .invalid:
             HStack(spacing: 4) {
@@ -87,6 +89,8 @@ struct ResponseBodyEditorView: View {
             }
             .font(.system(.caption, design: .monospaced))
             .foregroundColor(MockPadColors.status5xx)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("JSON validation: invalid")
 
         case .empty:
             EmptyView()

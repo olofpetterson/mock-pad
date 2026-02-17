@@ -44,6 +44,8 @@ struct ImportPreviewSheet: View {
                                 .font(MockPadTypography.statusCode)
                                 .foregroundColor(MockPadColors.statusCodeColor(code: endpoint.responseStatusCode))
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("\(endpoint.httpMethod) \(endpoint.path), status \(endpoint.responseStatusCode)")
                     }
                 }
                 .listRowBackground(MockPadColors.panel)

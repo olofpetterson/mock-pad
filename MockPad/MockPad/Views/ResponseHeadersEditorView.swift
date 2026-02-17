@@ -76,6 +76,9 @@ struct ResponseHeadersEditorView: View {
                             .foregroundColor(MockPadColors.status5xx)
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Remove header")
+                    .frame(minWidth: 44, minHeight: 44)
+                    .contentShape(Rectangle())
                 }
             }
         }

@@ -77,6 +77,7 @@ struct OpenAPIPreviewSheet: View {
                                         .imageScale(.large)
                                 }
                                 .buttonStyle(.plain)
+                                .accessibilityLabel(selections[index] ? "Deselect \(endpoint.httpMethod) \(endpoint.path)" : "Select \(endpoint.httpMethod) \(endpoint.path)")
 
                                 Text(endpoint.httpMethod)
                                     .methodBadgeStyle(color: MockPadColors.methodColor(for: endpoint.httpMethod))
@@ -117,6 +118,7 @@ struct OpenAPIPreviewSheet: View {
                                 }
                             }
                         }
+                        .accessibilityElement(children: .contain)
                     }
                 }
                 .listRowBackground(MockPadColors.panel)

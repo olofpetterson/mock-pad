@@ -71,6 +71,7 @@ struct RequestDetailView: View {
             RoundedRectangle(cornerRadius: MockPadMetrics.cornerRadius)
                 .fill(MockPadColors.panel)
         )
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Section 2: Request Details
@@ -216,5 +217,6 @@ struct RequestDetailView: View {
             )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(showCopiedFeedback ? "Copied to clipboard" : "Copy as cURL command")
     }
 }
