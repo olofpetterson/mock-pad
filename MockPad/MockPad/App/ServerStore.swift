@@ -78,9 +78,7 @@ final class ServerStore {
 
             do {
                 try await newEngine.start(port: tryPort, endpoints: snapshots, corsEnabled: corsEnabled, localhostOnly: localhostOnly)
-                // Brief delay for listener state to settle
-                try? await Task.sleep(for: .milliseconds(50))
-                let listening = await newEngine.isListening
+                let listening = await newEngine.awaitReady()
                 if listening {
                     self.engine = newEngine
                     self.actualPort = await newEngine.actualPort

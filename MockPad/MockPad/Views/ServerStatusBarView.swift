@@ -23,9 +23,15 @@ struct ServerStatusBarView: View {
                     .font(MockPadTypography.serverStatus)
                     .foregroundStyle(serverStore.isRunning ? MockPadColors.serverRunning : MockPadColors.serverStopped)
 
-                Text(serverStore.serverURL)
-                    .font(MockPadTypography.logTimestamp)
-                    .foregroundStyle(MockPadColors.textMuted)
+                if let error = serverStore.errorMessage {
+                    Text(error)
+                        .font(MockPadTypography.logTimestamp)
+                        .foregroundStyle(MockPadColors.serverStopped)
+                } else {
+                    Text(serverStore.serverURL)
+                        .font(MockPadTypography.logTimestamp)
+                        .foregroundStyle(MockPadColors.textMuted)
+                }
             }
             .accessibilityElement(children: .combine)
 

@@ -37,6 +37,9 @@ actor MockServerEngine {
     /// Whether the server is currently listening for connections.
     private(set) var isListening: Bool = false
 
+    /// Whether the listener has reached a terminal state (ready, failed, or cancelled).
+    private var listenerSettled: Bool = false
+
     /// The actual port the server is listening on (may differ from requested port).
     private(set) var actualPort: UInt16 = 0
 
@@ -97,11 +100,23 @@ actor MockServerEngine {
         }
 
         let queue = DispatchQueue(label: "com.mockpad.server")
+        self.listenerSettled = false
         newListener.start(queue: queue)
 
         self.listener = newListener
         self.endpoints = endpoints
         self.corsEnabled = corsEnabled
+    }
+
+    /// Wait until the listener reaches a definitive state (.ready or .failed).
+    /// Returns true if the server is listening, false if it failed or timed out.
+    func awaitReady(timeout: Duration = .seconds(2)) async -> Bool {
+        let deadline = ContinuousClock.now + timeout
+        while ContinuousClock.now < deadline {
+            if listenerSettled { return isListening }
+            try? await Task.sleep(for: .milliseconds(50))
+        }
+        return isListening
     }
 
     /// Stop the server, cancelling the listener and all active connections.
@@ -135,10 +150,13 @@ actor MockServerEngine {
         case .ready:
             isListening = true
             actualPort = listener?.port?.rawValue ?? 0
+            listenerSettled = true
         case .failed:
+            listenerSettled = true
             stop()
         case .cancelled:
             isListening = false
+            listenerSettled = true
         default:
             break
         }

@@ -12,12 +12,14 @@ import SwiftUI
 @Observable
 final class EndpointStore {
     private let modelContext: ModelContext
+    private var endpointVersion: Int = 0
 
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
     }
 
     var endpoints: [MockEndpoint] {
+        _ = endpointVersion
         let descriptor = FetchDescriptor<MockEndpoint>(
             sortBy: [SortDescriptor(\.sortOrder)]
         )
@@ -39,6 +41,7 @@ final class EndpointStore {
     }
 
     var collectionNames: [String] {
+        _ = endpointVersion
         Set(endpoints.compactMap(\.collectionName)).sorted()
     }
 
@@ -121,9 +124,11 @@ final class EndpointStore {
             }
         }
         try? modelContext.save()
+        endpointVersion += 1
     }
 
     var endpointCount: Int {
+        _ = endpointVersion
         let descriptor = FetchDescriptor<MockEndpoint>()
         return (try? modelContext.fetchCount(descriptor)) ?? 0
     }
@@ -131,15 +136,18 @@ final class EndpointStore {
     func addEndpoint(_ endpoint: MockEndpoint) {
         modelContext.insert(endpoint)
         try? modelContext.save()
+        endpointVersion += 1
     }
 
     func deleteEndpoint(_ endpoint: MockEndpoint) {
         modelContext.delete(endpoint)
         try? modelContext.save()
+        endpointVersion += 1
     }
 
     func updateEndpoint() {
         try? modelContext.save()
+        endpointVersion += 1
     }
 
     func clearLog() {
