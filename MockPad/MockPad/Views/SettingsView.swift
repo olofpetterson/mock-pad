@@ -38,6 +38,16 @@ struct SettingsView: View {
                         .foregroundStyle(MockPadColors.textPrimary)
                 }
 
+                Toggle("Localhost Only", isOn: Binding(
+                    get: { serverStore.localhostOnly },
+                    set: { serverStore.localhostOnly = $0 }
+                ))
+                .foregroundStyle(MockPadColors.textPrimary)
+
+                Text("When enabled, server only accepts connections from this device")
+                    .font(.caption)
+                    .foregroundStyle(MockPadColors.textMuted)
+
                 Toggle("CORS Headers", isOn: Binding(
                     get: { serverStore.corsEnabled },
                     set: { serverStore.corsEnabled = $0 }
