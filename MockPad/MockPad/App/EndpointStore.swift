@@ -42,6 +42,13 @@ final class EndpointStore {
         Set(endpoints.compactMap(\.collectionName)).sorted()
     }
 
+    func endpoint(withID id: PersistentIdentifier) -> MockEndpoint? {
+        let descriptor = FetchDescriptor<MockEndpoint>(
+            predicate: #Predicate<MockEndpoint> { _ in true }
+        )
+        return (try? modelContext.fetch(descriptor))?.first { $0.persistentModelID == id }
+    }
+
     func endpoints(inCollection name: String?) -> [MockEndpoint] {
         let descriptor = FetchDescriptor<MockEndpoint>(
             sortBy: [SortDescriptor(\.sortOrder)]
