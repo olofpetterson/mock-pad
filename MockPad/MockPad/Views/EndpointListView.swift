@@ -22,6 +22,10 @@ struct EndpointListView: View {
     @State private var importError: String?
     @State private var showImportError = false
     @State private var showExportProAlert = false
+    @State private var showOpenAPIImporter = false
+    @State private var pendingOpenAPIImport: OpenAPIParser.ParseResult?
+    @State private var showOpenAPIPreview = false
+    @State private var showOpenAPIProAlert = false
 
     private var filteredEndpoints: [MockEndpoint] {
         selectedCollection == nil
@@ -119,6 +123,16 @@ struct EndpointListView: View {
                     Button("Import from File", systemImage: "square.and.arrow.down.on.square") {
                         showImporter = true
                     }
+
+                    Divider()
+
+                    Button("Import OpenAPI Spec", systemImage: "doc.badge.gearshape") {
+                        guard proManager.isPro else {
+                            showOpenAPIProAlert = true
+                            return
+                        }
+                        showOpenAPIImporter = true
+                    }
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
@@ -165,6 +179,28 @@ struct EndpointListView: View {
                 showImportError = true
             }
         }
+        .fileImporter(
+            isPresented: $showOpenAPIImporter,
+            allowedContentTypes: [
+                .json,
+                UTType(filenameExtension: "yaml") ?? .plainText,
+                UTType(filenameExtension: "yml") ?? .plainText
+            ],
+            allowsMultipleSelection: false
+        ) { result in
+            guard let url = (try? result.get())?.first else { return }
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+            do {
+                let data = try Data(contentsOf: url)
+                let parseResult = try OpenAPIParser.parse(data: data)
+                pendingOpenAPIImport = parseResult
+                showOpenAPIPreview = true
+            } catch {
+                importError = error.localizedDescription
+                showImportError = true
+            }
+        }
         .sheet(isPresented: $showAddSheet) {
             AddEndpointSheet()
         }
@@ -174,6 +210,14 @@ struct EndpointListView: View {
         }) {
             if let export = pendingImport {
                 ImportPreviewSheet(export: export)
+            }
+        }
+        .sheet(isPresented: $showOpenAPIPreview, onDismiss: {
+            pendingOpenAPIImport = nil
+            debouncedSyncEngine()
+        }) {
+            if let parseResult = pendingOpenAPIImport {
+                OpenAPIPreviewSheet(parseResult: parseResult)
             }
         }
         .alert("PRO Required", isPresented: $showProAlert) {
@@ -190,6 +234,11 @@ struct EndpointListView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(importError ?? "Unknown error")
+        }
+        .alert("PRO Required", isPresented: $showOpenAPIProAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Upgrade to PRO to import OpenAPI specifications.")
         }
     }
 
