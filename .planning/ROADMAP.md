@@ -10,7 +10,7 @@ MockPad delivers a native iOS local HTTP mock server through 11 phases. We begin
 - [x] **Phase 2: Server Engine Core** - NWListener, HTTP parsing, basic routing
 - [x] **Phase 3: Endpoint Editor UI** - Create/edit/delete endpoints with response config
 - [x] **Phase 4: Request Log** - Live streaming, filtering, detail inspection
-- [ ] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
+- [x] **Phase 5: Response Templates + Delay** - Built-in templates, custom templates, delay simulation
 - [ ] **Phase 6: Path Parameters + Wildcard Matching** - Advanced routing features
 - [ ] **Phase 7: Import/Export + Collections** - Data portability and organization
 - [ ] **Phase 8: OpenAPI Import** - YAML/JSON spec parsing with schema generation
@@ -110,9 +110,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md -- Data layer: MockEndpoint.responseDelayMs, EndpointSnapshot.responseDelayMs, ResponseTemplate @Model, BuiltInTemplates (8 static templates), ModelContainer registration
-- [ ] 05-02-PLAN.md -- Template picker + delay UI: TemplatePickerView, SaveTemplateSheet, EndpointEditorView template/delay sections
-- [ ] 05-03-PLAN.md -- Server engine delay: EndpointMatcher delay data flow, Task.sleep in MockServerEngine before response send
+- [x] 05-01-PLAN.md -- Data layer: MockEndpoint.responseDelayMs, EndpointSnapshot.responseDelayMs, ResponseTemplate @Model, BuiltInTemplates (8 static templates), ModelContainer registration
+- [x] 05-02-PLAN.md -- Template picker + delay UI: TemplatePickerView, SaveTemplateSheet, EndpointEditorView template/delay sections
+- [x] 05-03-PLAN.md -- Server engine delay: EndpointMatcher delay data flow, Task.sleep in MockServerEngine before response send
 
 ### Phase 6: Path Parameters + Wildcard Matching
 **Goal**: Server supports dynamic path parameters and wildcard paths with token substitution in responses
@@ -214,7 +214,7 @@ Plans:
 | 2. Server Engine Core | 3/3 | ✓ Complete | 2026-02-16 |
 | 3. Endpoint Editor UI | 3/3 | ✓ Complete | 2026-02-16 |
 | 4. Request Log | 3/3 | ✓ Complete | 2026-02-16 |
-| 5. Response Templates + Delay | 0/TBD | Not started | - |
+| 5. Response Templates + Delay | 3/3 | ✓ Complete | 2026-02-17 |
 | 6. Path Parameters + Wildcard Matching | 0/TBD | Not started | - |
 | 7. Import/Export + Collections | 0/TBD | Not started | - |
 | 8. OpenAPI Import | 0/TBD | Not started | - |
