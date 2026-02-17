@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-16)
 
 **Core value:** Developers can start a local mock HTTP server in one tap and test their client app against it immediately
-**Current focus:** Phase 6 - Path Parameters & Wildcard Matching
+**Current focus:** Phase 7 - Import/Export + Collections
 
 ## Current Position
 
-Phase: 6 of 11 (Path Parameters & Wildcard Matching)
-Plan: 2 of 2 in current phase (phase complete)
-Status: Phase Complete
-Last activity: 2026-02-17 - Completed 06-02-PLAN.md (MockServerEngine PathParamReplacer Integration)
+Phase: 7 of 11 (Import/Export + Collections)
+Plan: 1 of 3 in current phase
+Status: In Progress
+Last activity: 2026-02-17 - Completed 07-01-PLAN.md (Collection Data Layer + Export/Import Services)
 
-Progress: [██████░░░░] 59%
+Progress: [██████░░░░] 63%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 2 min
-- Total execution time: 0.50 hours
+- Total execution time: 0.55 hours
 
 **By Phase:**
 
@@ -33,9 +33,10 @@ Progress: [██████░░░░] 59%
 | 04-request-log | 3 | 5 min | 1.7 min |
 | 05-response-templates-delay | 3 | 5 min | 1.7 min |
 | 06-path-parameters-wildcard-matching | 2 | 3 min | 1.5 min |
+| 07-import-export-collections | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (2 min), 05-02 (1 min), 05-03 (2 min), 06-01 (2 min), 06-02 (1 min)
+- Last 5 plans: 05-02 (1 min), 05-03 (2 min), 06-01 (2 min), 06-02 (1 min), 07-01 (3 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -105,6 +106,10 @@ Recent decisions affecting current work:
 - Plan 06-01: PathParamReplacer uses simple string replacement loop (no escaping, no JSON awareness)
 - Plan 06-01: MockServerEngine applies token substitution after match, before response build
 - Plan 06-02: No code changes needed: Plan 06-01 executor completed all 06-02 integration work as a Rule 3 deviation
+- Plan 07-01: CollectionExporter/CollectionImporter use caseless enum pattern (matches BuiltInTemplates, CurlGenerator convention)
+- Plan 07-01: Export format uses "mockpad-collection" identifier and version 1 for future compatibility
+- Plan 07-01: Duplicate detection is case-insensitive on path and method
+- Plan 07-01: ImportError conforms to Equatable for testable error assertions with Swift Testing
 
 ### Pending Todos
 
@@ -117,5 +122,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 06-02-PLAN.md (MockServerEngine PathParamReplacer Integration) - Phase 06 complete
-Resume file: .planning/phases/06-path-parameters-wildcard-matching/06-02-SUMMARY.md
+Stopped at: Completed 07-01-PLAN.md (Collection Data Layer + Export/Import Services)
+Resume file: .planning/phases/07-import-export-collections/07-01-SUMMARY.md
