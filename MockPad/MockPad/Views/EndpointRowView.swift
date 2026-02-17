@@ -23,11 +23,13 @@ struct EndpointRowView: View {
             Text(endpoint.httpMethod)
                 .methodBadgeStyle(color: methodColor)
                 .frame(width: MockPadMetrics.methodBadgeWidth)
+                .accessibilityHidden(true)
 
             // Path
             Text(endpoint.path)
                 .endpointPathStyle()
                 .lineLimit(1)
+                .accessibilityHidden(true)
 
             Spacer()
 
@@ -35,6 +37,7 @@ struct EndpointRowView: View {
             Text("\(endpoint.responseStatusCode)")
                 .font(MockPadTypography.statusCode)
                 .foregroundColor(statusColor)
+                .accessibilityHidden(true)
 
             // Enable/disable toggle
             Toggle(isOn: Binding(
@@ -45,11 +48,15 @@ struct EndpointRowView: View {
             }
             .labelsHidden()
             .tint(MockPadColors.accent)
+            .accessibilityLabel("\(endpoint.httpMethod) endpoint enabled")
+            .accessibilityValue(endpoint.isEnabled ? "On" : "Off")
         }
         .padding(.horizontal, MockPadMetrics.panelPadding)
         .frame(minHeight: MockPadMetrics.endpointCardHeight)
         .background(MockPadColors.panel)
         .cornerRadius(MockPadMetrics.cornerRadius)
         .opacity(endpoint.isEnabled ? 1.0 : 0.5)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("\(endpoint.httpMethod) \(endpoint.path), status \(endpoint.responseStatusCode)")
     }
 }

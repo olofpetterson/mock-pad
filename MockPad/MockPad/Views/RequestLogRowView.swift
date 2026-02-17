@@ -41,5 +41,7 @@ struct RequestLogRowView: View {
                 .frame(width: 48, alignment: .trailing)
         }
         .frame(height: MockPadMetrics.logRowHeight)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(log.method) \(log.path), status \(log.responseStatusCode), \(String(format: "%.0f", log.responseTimeMs)) milliseconds")
     }
 }

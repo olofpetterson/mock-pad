@@ -16,6 +16,7 @@ struct ServerStatusBarView: View {
             Circle()
                 .fill(serverStore.isRunning ? MockPadColors.serverRunning : MockPadColors.serverStopped)
                 .frame(width: MockPadMetrics.serverDotSize, height: MockPadMetrics.serverDotSize)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(serverStore.isRunning ? "SERVER: RUNNING" : "SERVER: STOPPED")
@@ -26,6 +27,7 @@ struct ServerStatusBarView: View {
                     .font(MockPadTypography.logTimestamp)
                     .foregroundStyle(MockPadColors.textMuted)
             }
+            .accessibilityElement(children: .combine)
 
             Spacer()
 
@@ -48,6 +50,10 @@ struct ServerStatusBarView: View {
                             .fill((serverStore.isRunning ? MockPadColors.serverStopped : MockPadColors.serverRunning).opacity(0.15))
                     )
             }
+            .contentShape(Rectangle())
+            .accessibilityLabel(serverStore.isRunning ? "Stop server" : "Start server")
+            .accessibilityHint("Double tap to \(serverStore.isRunning ? "stop" : "start") the mock server")
+            .frame(minWidth: 44, minHeight: 44)
         }
         .padding(.horizontal, MockPadMetrics.panelPadding)
         .frame(height: MockPadMetrics.serverStatusBarHeight)
