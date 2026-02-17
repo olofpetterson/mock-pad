@@ -124,10 +124,11 @@ Plans:
   3. Path parameter tokens in response body ({id}, {userId}) are replaced with actual values
   4. User can define wildcard path using * (e.g., /api/*) that matches any sub-path
   5. Endpoint matcher prioritizes exact matches over path params over wildcards
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD
+- [ ] 06-01-PLAN.md -- TDD: Enhanced EndpointMatcher with matchPath (param + wildcard), priority selection, PathParamReplacer token substitution, ~24+ tests
+- [ ] 06-02-PLAN.md -- MockServerEngine integration: pathParams extraction + PathParamReplacer.replace in response pipeline
 
 ### Phase 7: Import/Export + Collections
 **Goal**: User can organize endpoints into collections, export as JSON, import from JSON, and share via iOS share sheet
