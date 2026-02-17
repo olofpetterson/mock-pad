@@ -35,19 +35,19 @@ enum MockPadColors {
     static let methodPost = Color(red: 1.0, green: 0.69, blue: 0.0)      // #FFB000
     static let methodPut = Color(red: 0.0, green: 0.75, blue: 1.0)       // #00BFFF
     static let methodPatch = accent                                        // #7B68EE
-    static let methodDelete = Color(red: 1.0, green: 0.30, blue: 0.30)   // #FF4D4D
+    static let methodDelete = Color(red: 1.0, green: 0.42, blue: 0.42)   // #FF6B6B
     static let methodOther = Color.white.opacity(0.40)
 
     // MARK: - Server Status
     static let serverRunning = Color(red: 0.0, green: 1.0, blue: 0.4)    // #00FF66
-    static let serverStopped = Color(red: 1.0, green: 0.30, blue: 0.30)  // #FF4D4D
+    static let serverStopped = Color(red: 1.0, green: 0.42, blue: 0.42)  // #FF6B6B
     static let serverStarting = Color(red: 1.0, green: 0.69, blue: 0.0)  // #FFB000
 
     // MARK: - Response Status Codes
     static let status2xx = Color(red: 0.0, green: 1.0, blue: 0.4)        // #00FF66
     static let status3xx = Color(red: 0.0, green: 0.75, blue: 1.0)       // #00BFFF
     static let status4xx = Color(red: 1.0, green: 0.69, blue: 0.0)       // #FFB000
-    static let status5xx = Color(red: 1.0, green: 0.30, blue: 0.30)      // #FF4D4D
+    static let status5xx = Color(red: 1.0, green: 0.42, blue: 0.42)      // #FF6B6B
 
     // MARK: - PRO
     static let proGradientStart = Color(red: 0.02, green: 0.02, blue: 0.03)
