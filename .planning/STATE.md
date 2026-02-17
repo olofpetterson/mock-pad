@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-16)
 ## Current Position
 
 Phase: 5 of 11 (Response Templates & Delay)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-02-17 - Completed 05-02-PLAN.md (Template Picker UI & Delay Slider)
+Plan: 3 of 3 in current phase
+Status: Phase Complete
+Last activity: 2026-02-17 - Completed 05-03-PLAN.md (Server Engine Delay Integration)
 
-Progress: [█████░░░░░] 46%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
+- Total plans completed: 14
 - Average duration: 2 min
-- Total execution time: 0.42 hours
+- Total execution time: 0.45 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [█████░░░░░] 46%
 | 02-server-engine-core | 3 | 7 min | 2.3 min |
 | 03-endpoint-editor-ui | 3 | 6 min | 2 min |
 | 04-request-log | 3 | 5 min | 1.7 min |
-| 05-response-templates-delay | 2 | 3 min | 1.5 min |
+| 05-response-templates-delay | 3 | 5 min | 1.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (3 min), 04-02 (1 min), 04-03 (1 min), 05-01 (2 min), 05-02 (1 min)
+- Last 5 plans: 04-02 (1 min), 04-03 (1 min), 05-01 (2 min), 05-02 (1 min), 05-03 (2 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -95,6 +95,9 @@ Recent decisions affecting current work:
 - Plan 05-02: Sheet attached to EmptyView to avoid layout issues when view contains multiple Form Sections
 - Plan 05-02: Binding(get:/set:) wrapper for Int-to-Double Slider conversion
 - Plan 05-02: Group + opacity/allowsHitTesting pattern for PRO feature gating on form sections
+- Plan 05-03: Task.sleep in actor method (non-blocking via reentrancy at suspension point)
+- Plan 05-03: Delay applied after response build but before response time calculation
+- Plan 05-03: Only matched endpoints have delay; 404/405 responses skip delay (server-generated, not endpoint-configured)
 
 ### Pending Todos
 
@@ -107,5 +110,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-17
-Stopped at: Completed 05-02-PLAN.md (Template Picker UI & Delay Slider)
-Resume file: .planning/phases/05-response-templates-delay/05-02-SUMMARY.md
+Stopped at: Completed 05-03-PLAN.md (Server Engine Delay Integration)
+Resume file: .planning/phases/05-response-templates-delay/05-03-SUMMARY.md
