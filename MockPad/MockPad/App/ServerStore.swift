@@ -85,14 +85,18 @@ final class ServerStore {
                     self.isRunning = true
                     return
                 } else {
+                    let reason = await newEngine.lastError
                     await newEngine.stop()
+                    if let reason {
+                        errorMessage = reason
+                    }
                 }
             } catch {
                 continue // Try next port
             }
         }
 
-        errorMessage = "Could not start server on ports \(basePort)-\(maxPort)"
+        errorMessage = errorMessage ?? "Could not start server on ports \(basePort)-\(maxPort)"
     }
 
     func stopServer() async {

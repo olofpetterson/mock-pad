@@ -40,6 +40,9 @@ actor MockServerEngine {
     /// Whether the listener has reached a terminal state (ready, failed, or cancelled).
     private var listenerSettled: Bool = false
 
+    /// Error description if the listener failed to start.
+    private(set) var lastError: String?
+
     /// The actual port the server is listening on (may differ from requested port).
     private(set) var actualPort: UInt16 = 0
 
@@ -78,16 +81,19 @@ actor MockServerEngine {
         parameters.allowLocalEndpointReuse = true
 
         // When localhost-only, bind to loopback address (127.0.0.1) to reject
-        // connections from other devices on the same network
+        // connections from other devices on the same network.
+        // Port is set via requiredLocalEndpoint so NWListener must be created
+        // without an explicit port to avoid the duplicate-port conflict.
+        let newListener: NWListener
         if localhostOnly {
             parameters.requiredLocalEndpoint = NWEndpoint.hostPort(
                 host: NWEndpoint.Host.ipv4(.loopback),
                 port: nwPort
             )
+            newListener = try NWListener(using: parameters)
+        } else {
+            newListener = try NWListener(using: parameters, on: nwPort)
         }
-
-        // MUST create new NWListener each time -- cannot restart cancelled listener
-        let newListener = try NWListener(using: parameters, on: nwPort)
 
         // Bridge NWListener state changes to actor isolation
         newListener.stateUpdateHandler = { [weak self] state in
@@ -101,6 +107,7 @@ actor MockServerEngine {
 
         let queue = DispatchQueue(label: "com.mockpad.server")
         self.listenerSettled = false
+        self.lastError = nil
         newListener.start(queue: queue)
 
         self.listener = newListener
@@ -151,7 +158,8 @@ actor MockServerEngine {
             isListening = true
             actualPort = listener?.port?.rawValue ?? 0
             listenerSettled = true
-        case .failed:
+        case .failed(let error):
+            lastError = error.localizedDescription
             listenerSettled = true
             stop()
         case .cancelled:
